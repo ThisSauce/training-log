@@ -1,0 +1,71 @@
+// How-to guides, part B: strength, ankles, upper body, ball work, conditioning, recovery.
+window.GUIDE = window.GUIDE || {};
+Object.assign(window.GUIDE, {
+  // Legs ---------------------------------------------------------------------
+  squat: ['Bar on your upper back, feet shoulder-width, toes slightly out.', 'Brace your stomach, then sit down between your heels with your chest up.', 'Go down until your thighs are at least parallel, knees tracking over your toes.', 'Drive up hard. In weeks 9–12, move the bar as fast as you can.', 'Pick a weight that leaves 1–2 good reps in the tank (RPE 8).', '!Knees caving in or heels lifting. Lighten it and own the position.'],
+  rfess: ['Put your back foot laces-down on a bench, front foot about a stride ahead.', 'Hold heavy dumbbells at your sides.', 'Lower straight down until your back knee nearly touches the floor.', 'Drive up through your front heel and midfoot. 6 each leg.', '!Front foot too close to the bench, so your heel lifts. Step further out.'],
+  rdl: ['Hold the bar at hip height, feet hip-width, knees slightly bent.', 'Push your hips back and slide the bar down your thighs, back flat.', 'Stop when you feel a strong hamstring stretch, usually just below the knee.', 'Squeeze your glutes to stand back up.', '!Rounding your back to reach lower. Range comes from the hips.'],
+  nordic: ['Also called the Nordic curl. Kneel on a pad with your ankles locked under something solid or held by a partner.', 'Keep a straight line from knees to head, hips locked.', 'Lower yourself forward as slowly as you can.', 'Catch yourself with your hands, push back up lightly, and repeat.', '!Bending at the hips to make it easier. Stay straight; lower only as far as you control.'],
+  latlunge: ['Stand with feet wide.', 'Sit back into one hip, bending that knee, while the other leg stays straight.', 'Keep your chest up and the heel of the bent leg down. Push back to the middle.', '!Letting the bent knee cave in. Knee over toes.'],
+  standcalf: ['Stand with the balls of your feet on a step, knees straight, holding weight or using a machine.', 'Rise as high as you can and hold for 1 s at the top.', 'Lower for 3 s until your heels are below the step.', '!Bouncing the reps. Slow down, pause on top.'],
+  slcalf: ['Stand on one foot on the edge of a step, holding something for balance.', 'Rise as high as you can on that foot.', 'Lower for 3 s until your heel is below the step. 12–15 each.'],
+  seatcalf: ['Sit at a seated calf machine (or with a heavy dumbbell on your knees), balls of your feet on a block.', 'Lower your heels as far as they go.', 'Rise up, hold 2 s at the top, lower under control.', 'This works the soleus, the deep calf muscle that carries most of the load in running.'],
+  isocalf: ['Stand on one leg, knee straight, heel slightly raised off the floor.', 'Hold a heavy dumbbell, or push up under a fixed Smith bar.', 'Push up as hard as you can without moving, for 30 s.', 'Hard effort, but no pain. 4 holds each leg.', '!Bending the knee. It must stay straight to load the Achilles.'],
+  tib: ['Stand with your back and butt against a wall, heels about a foot away.', 'Lift your toes as high as you can, keeping your heels down.', 'Lower slowly. 20 reps.'],
+  sleddrag: ['Hold the sled straps and walk backwards, staying low.', 'Push through the front of your feet with small steps.', 'Moderate weight: it should burn your quads, not hurt your knees.'],
+  copen: ['Lie on your side with your top foot (or knee, to start) on a bench.', 'Lift your hips so your body is straight, bottom leg hanging free or lifted to the bench.', 'Hold 20–30 s, then switch sides.', 'Start with the knee on the bench; move to the foot when holds feel solid.', '!Hips sagging. Squeeze up to a straight line.'],
+  copshort: ['Lie on your side with your top knee on a bench.', 'Lift your hips into a straight line and hold 10 s each side.', 'This is just a wake-up, not a hard set.'],
+  balance: ['Stand on one leg, barefoot if you can.', 'Close your eyes and hold for 30 s.', 'Stay tall; small wobbles at the ankle are fine.'],
+
+  // Chest and shoulders --------------------------------------------------------------
+  inclinedb: ['Set the bench to about 30°. Dumbbells at the sides of your chest.', 'Press up and slightly in until your arms are nearly straight.', 'Lower under control to a deep stretch.', 'Heavy: RPE 8–9, so 1–2 reps left in the tank.', '!Bench set too steep, which turns it into a shoulder press.'],
+  flatdb: ['Lie on a flat bench, feet planted, shoulder blades squeezed back.', 'Press the dumbbells up over your chest.', 'Lower for 3 s to a deep stretch, then press.', '!Elbows flared straight out to the side. Keep them at about 45°.'],
+  machpress: ['Set the seat so the handles line up with your mid-chest.', 'Press out, then squeeze for 1 s with your arms nearly straight.', 'Return under control.'],
+  pecdeck: ['Sit with your back flat, elbows slightly bent.', 'Bring the handles together in front of your chest and squeeze 1 s.', 'Open slowly to a good stretch.'],
+  lhfly: ['Set the cables low. Stand in the middle, one handle in each hand.', 'Sweep your hands up and together to chin height, elbows slightly bent.', 'Lower under control. This hits the upper chest.'],
+  hlfly: ['Set the cables high. Stand in the middle, slight forward lean.', 'Sweep your hands down and together in front of your hips.', 'Return slowly. This hits the lower chest.'],
+  latraise: ['Hold dumbbells at your sides, slight bend in the elbows.', 'Raise your arms out to the side to shoulder height.', 'Lower slowly.', '!Swinging the weight up. Go lighter.'],
+  cablelat: ['Stand side-on to a low cable, handle in the far hand.', 'Raise your arm out to the side to shoulder height.', 'Lower slowly. Light weight, all reps on one side, then switch.', 'On Sunday it’s B2 of a superset: go straight from hammer curls, then rest 60 s.'],
+  pushdown: ['Use a rope on a high cable. Elbows pinned to your sides.', 'Push down and spread the rope apart at the bottom.', 'Return until your forearms are just above parallel.'],
+  ohext: ['Face away from a cable set at the bottom, rope held behind your head.', 'Elbows point forward and stay still.', 'Straighten your arms overhead, then lower to a deep stretch.'],
+
+  inclinesmith: ['Set the bench (or machine seat) to about 30° so the bar or handles line up with your upper chest.', 'Press up until your arms are nearly straight.', 'Lower under control to a full stretch at the top of your chest.', 'RPE 8–9: 1–2 reps left in the tank.', '!Bench too steep, which turns it into a shoulder press.'],
+  ezcurl: ['Stand tall, EZ bar at your thighs, hands on the angled grips.', 'Curl the bar up without swinging, elbows by your sides.', 'Lower slowly, then go straight into the skull crushers (A2).', '!Rocking your body to swing the bar up. Lighten it.'],
+  skull: ['Lie on a flat bench holding the EZ bar over your chest, arms straight.', 'Bend only at the elbows and lower the bar toward your forehead or just behind your head.', 'Straighten your arms back up. Rest 90 s after this set, then repeat the superset.', '!Elbows flaring out wide. Keep them pointing at the ceiling.'],
+  hammer: ['Hold dumbbells (or a rope on a low cable) with palms facing each other.', 'Curl up without moving your elbows forward.', 'Lower slowly, then go straight into cable lateral raises (B2).'],
+  // Back and arms ----------------------------------------------------------------
+  pulldown: ['Use a neutral grip (palms facing each other), or do neutral-grip pull-ups.', 'Pull your elbows down to your sides until the handle reaches your upper chest.', 'Return slowly to a full stretch. Heavy, RPE 8.', '!Leaning way back and yanking. Stay mostly upright.'],
+  cablerow: ['Sit tall, close-grip handle, palms up.', 'Pull to your stomach, squeezing your shoulder blades together.', 'Let your shoulders stretch forward on the way back.'],
+  bbrow: ['Hinge forward to about 45°, back flat, overhand grip.', 'Pull the bar to your lower chest.', 'Lower under control. Go light the first two weeks; it loads your lower back before Saturday.', '!Standing up more on each rep. Keep the hinge angle fixed.'],
+  sarow: ['One knee and hand on a bench, other foot on the floor, back flat.', 'Row the dumbbell to your hip, elbow close to your body.', 'Lower to a full stretch. 8–10 each arm.'],
+  sapulldown: ['Stand facing a high cable with a bar or rope, arms straight.', 'Hinge forward slightly and sweep the bar down to your thighs with straight arms.', 'Return slowly.'],
+  reardelt: ['Set two cables at shoulder height and cross them: left hand takes the right cable.', 'Pull your arms out wide and back, arms nearly straight.', 'Return slowly. Light weight.'],
+  facepull: ['Rope on a cable at face height.', 'Pull toward your forehead, splitting the rope and pulling your hands back by your ears.', 'Light weight, squeeze your upper back.'],
+  pallof: ['Stand side-on to a cable at chest height, handle at your chest.', 'Press your arms straight out and hold 2 s without letting the cable twist you.', 'Bring it back in. 10 each side.', 'This trains your trunk to stay stable when you plant and cut.'],
+  inclinecurl: ['Lie back on a bench set to about 45°, arms hanging straight down.', 'Curl the dumbbells up without moving your elbows forward.', 'Lower slowly to a full stretch.'],
+  preacher: ['Sit at the preacher bench, armpits snug to the top of the pad.', 'Curl the EZ bar up.', 'Lower slowly until your arms are nearly straight.'],
+
+  // Ball work -----------------------------------------------------------------------
+  mastery: ['5 minutes on the spot, both feet.', 'Toe taps on top of the ball, sole rolls side to side, inside–outside touches, V-pulls.', 'Stay on the balls of your feet and keep your eyes up when you can.'],
+  slalom: ['Set 6 cones 1 m apart.', 'Run 1: inside of the foot only. Run 2: outside only. Run 3: both.', 'Close control, then speed up as it gets clean.'],
+  moveexplode: ['Dribble 10 m at about 70%.', 'Do one move: Cruyff turn, drag-back or step-over.', 'Burst 5 m at full speed after the move. 3 per move, each side.'],
+  boxcontrol: ['Mark a 5 × 5 m box.', 'Dribble inside it, changing direction every 2–3 touches.', 'Keep your head up. 30 s per set.'],
+  speeddribble: ['Dribble 20 m as fast as you can.', 'The ball should never be more than one step away.', 'Walk back between reps.'],
+  onevone: ['Face a teammate or one of your players.', 'Try to beat them to a cone line while they defend.', '6 reps, switching roles if you like.'],
+  match: ['Keep your 5–7 min shifts.', 'Cues: inside-foot control, knees tracking over your 2nd and 3rd toes.', 'When defending, stay low on the balls of your feet so you can stop and turn instantly.', 'Log the minutes you played.'],
+  postgame: ['5 min easy walk, then gentle calf and hip stretches.', 'A real meal with protein and carbs within about an hour.', 'Do the bedtime wind-down and get lights out early.'],
+
+  // Conditioning and recovery ----------------------------------------------------------
+  rsa: ['Mark 30 m. Do this at the end of the session.', 'Sprint 30 m all-out.', 'Walk back slowly; start the next sprint 20 s after you finish.', '6 sprints, one set only. Times are optional; your later sprints should stay close to your first.', '!Pacing yourself. Every rep is all-out; the fatigue is the point.'],
+  bike: ['Warm up for 2 minutes easy.', 'Sprint all-out for 15 s, then pedal easily for 45 s.', 'Repeat for 8 rounds. Skip it after a late Thursday event.'],
+  flushbike: ['10 minutes of brisk walking or a light jog.', 'You should finish feeling better than you started.'],
+  flushmob: ['Ankle rocks, hip circles and leg swings, about 1–2 minutes each.'],
+  flushroll: ['Roll your calves and quads slowly, about 1 minute per area.', 'Pause on tight spots for a few breaths.'],
+  easywalk: ['5 minutes of easy walking or biking. Just move.'],
+  mobwake: ['Leg swings, 90/90 hip switches and ankle rocks, 10 each.'],
+  bridge: ['Lie on your back, knees bent, feet flat.', 'Drive your hips up and squeeze your glutes for 1 s.', 'Lower slowly. 2 × 10.'],
+  easycardio: ['10 minutes of walking or light jogging at a pace you could chat at.'],
+  sunmob: ['90/90 hip switches, ankle wall dorsiflexion, cat-camels, couch stretch and Cossack rock-backs.', 'About 2 minutes each, slow and relaxed.'],
+  feet: ['Toe walks and heel walks, 15 m each.', 'Single-leg balance, 30 s each.', 'Towel scrunches: pull a towel toward you with your toes.'],
+  sunroll: ['Foam roll your calves, quads and upper back, slow passes.'],
+});

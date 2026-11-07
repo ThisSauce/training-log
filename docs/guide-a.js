@@ -1,0 +1,67 @@
+// How-to guides, part A: warm-ups, speed, stopping, agility, jumps, tests, daily routines.
+// Each entry: steps in order; a line starting with "!" is the most common mistake.
+window.GUIDE = window.GUIDE || {};
+Object.assign(window.GUIDE, {
+  // Warm-ups ---------------------------------------------------------------
+  ramp: ['Raise (3 min): light jog, skips, side shuffles, backpedal, carioca, 2 × 20 m each.', 'Activate (3 min): glute bridge ×10, side plank 20 s each side, mini-band lateral walks ×10 steps each way, calf raises ×15, hamstring tantrums 2 × 10 s.', 'Hamstring tantrums: lie on your back, heels on a bench or box, lift your hips into a bridge, then drive your heels down in fast alternating kicks for 10 s while your hips stay up. Wakes your hamstrings up before sprinting without making them sore.', 'Mobilise (4 min): world’s greatest stretch ×5 each side, leg swings front/back and side ×10, walking lunge with twist ×6 each, inchworms ×5.', 'Potentiate (5 min): A-march → A-skip → B-skip (2 × 20 m each), pogo hops ×20, then 3 build-up runs at 60%, 80% and 90% over 30 m.', 'On lifting-only days, swap the build-ups for 2–3 light warm-up sets of your first lift.', '!Stopping at "sweaty". The warm-up should end with you ready to sprint at full speed.'],
+  shortwu: ['Jog easily for 2 minutes.', 'Skips and side shuffles, 2 × 15 m each.', 'Leg swings front/back and side to side, 10 each leg.', '!Turning it into a workout. This is just to get warm.'],
+  raise: ['Jog easily, then high knees, butt kicks, side shuffles, carioca and backpedal over 15–20 m each.', 'Build from slow to lively over the 4 minutes.'],
+  activate: ['Glute bridge ×10: squeeze your glutes at the top for 1 s.', 'Mini-band lateral walks ×10 steps each way, staying low.', 'Copenhagen plank on the short lever (knee on a bench) for 10 s each side.', 'Step-ups ×10 each leg, driving through the whole foot.', 'Hamstring tantrums 2 × 10 s: heels on a bench, hips up in a bridge, fast alternating heel kicks down into the bench while your hips stay up.'],
+  mobilise: ['Leg swings both directions, 10 each leg.', 'World’s greatest stretch ×3 each side: lunge, elbow to instep, then rotate and reach to the sky.', 'Ankle rocks ×10 each: knee over toes, heel stays down.'],
+  potentiate: ['Pogos ×10, then A-skips 2 × 15 m.', 'Build-ups over 20 m at 70%, 85%, then 95%.', '2 × 10 m accelerate-and-stop, then 2 shuffle-to-sprints each way.', 'Finish with 2 × 10 m at 100%. Rest 45–60 s between the fast reps.', 'Finish 10–15 minutes before kickoff. Sat for a long time? Redo the last two lines before going on.', '!Skipping the 100% reps. Your first full sprint shouldn’t happen in the game.'],
+
+  // Speed ------------------------------------------------------------------
+  accel: ['Mark 15 m. Use a different start each rep: 2-point (standing split stance), falling start, side-on, or a defensive stance turn-and-go.', 'Lean from the ankles, not the waist, and push the ground back behind you.', 'Eyes down for the first 3–5 steps, then rise gradually. Big, powerful arm swing.', 'Walk back and rest the full 2 minutes.', 'Stop the set if your times drop about 3% or your form breaks.', '!Popping straight upright on the first step. Stay leaning and push.'],
+  sled: ['Load a sled (or use a moderate hill) so your 20 m is about 10–20% slower than normal.', 'Sprint 15–20 m with the same acceleration posture: strong forward lean, push back hard.', 'Rest 2–3 minutes between reps.', '!Loading it so heavy you end up walking. It should still feel like sprinting.'],
+  flying: ['Set three cones: start, 25 m (build-up) and 25 m + 15 m (20 m in weeks 9–12).', 'Build up smoothly through the first 25 m so you hit top speed at the second cone.', 'Hold max speed through the timed zone: tall, hips high, feet landing under your hips.', 'Be bouncy and stiff at the ankle, relax your face and shoulders.', 'Walk back and rest 3–4 minutes. Time the zone with a phone at 240 fps if you can.', '!Reaching out in front with your feet. That brakes you on every step.'],
+  strides: ['Do 10 pogos first.', 'Run 20 m at about 70% effort, relaxed and tall.', 'Walk back and repeat once.'],
+
+  // Stopping, cutting and agility ----------------------------------------------
+  snapdown: ['Stand tall on your toes with your arms overhead.', 'Throw your arms down and drop fast into an athletic stance: hips back, knees bent, chest up.', 'Freeze for 2 seconds. The landing should be quiet.', '!Knees caving inward. Keep them over your toes.'],
+  snapstick: ['Stand tall on your toes with your arms overhead.', 'Snap your arms down and drop into an athletic stance as fast as you can.', 'Stick it: freeze 2 s, balanced, quiet feet.', '!Landing loud or rocking forward. That means the brakes aren’t working yet.'],
+  depthdrop: ['Stand on a 30–45 cm box.', 'Step off (don’t jump) and land on both feet.', 'Absorb the landing into a half squat and freeze for 2 seconds.', '!Stiff legs on landing. Let your hips and knees soak it up.'],
+  depthjump: ['Stand on a 30–40 cm box and step off.', 'The moment your feet touch, jump as high as you can. Contact should be very short.', 'Land softly, reset fully, then do the next rep.', '!Pausing on the ground. If you sink, the box is too high.'],
+  stop3: ['Sprint 10 m hard.', 'Lower your hips early and lean back slightly.', 'Stop dead in 3 short, choppy steps, outside foot wide, knee over toes.', 'Freeze 2 s, balanced and ready to move. Walk back.', '!One big lunge step to stop. Use short, fast steps.'],
+  stop2: ['Sprint 15 m hard.', 'Drop your hips early and stop in only 2 steps.', 'Freeze 2 s. Knees track over your toes the whole time.', '!Trying this before the 3-step stop feels easy. Earn it.'],
+  stopback: ['Sprint 20 m.', 'Stop in 2 steps and freeze for a beat.', 'Immediately backpedal 3 m, staying low.'],
+  cut45: ['Sprint 5 m.', 'Plant your outside foot wide of your body, knee over toes.', 'Push off it and sprint 5 m at 45° the other way. 2 each side.', '!Planting the foot under your body. Wide plant = sharper cut.'],
+  cut90: ['Sprint 10 m.', 'Lower your hips, take short steps, plant the outside foot wide.', 'Cut 90° and sprint out 5 m. 2 each side.'],
+  reactcut: ['Partner stands 10 m ahead, or use a left/right reaction app.', 'Sprint toward them. They point (or the app calls) left or right late.', 'Cut 90° that way and sprint out. 3 each side.', '!Guessing early. React to the cue.'],
+  shufstop: ['Start in an athletic stance.', 'Shuffle 3 m fast, feet never crossing.', 'Plant the outside foot wide, stop dead and push straight back the other way.', '!Standing up tall as you plant. Stay low.'],
+  jockey: ['Get into a defensive stance, side-on, low.', 'Backpedal 3 m like you’re jockeying an attacker.', 'Drop step: swing your hip open and sprint 10 m in the new direction.', '!Turning with your shoulders first. Lead with the hip.'],
+  crossover: ['Stand side-on to where you will run.', 'Cross your trail leg over in front of your lead leg and drive.', 'Sprint 10 m. 2 each side.'],
+  bpturn: ['Backpedal 5 m, low and controlled.', 'Turn 180° (open your hips) as if an attacker got past you.', 'Sprint 10 m to chase.', '!Backpedalling too upright. You can’t turn fast from tall.'],
+  turn505: ['Sprint 10 m to a line.', 'Plant, turn 180° and sprint 5 m back.', 'Do 2 turning on your left foot and 2 on your right.'],
+  mirror: ['Face a partner in a 5 m box, both in athletic stance.', 'They move side to side, forward and back. You copy them as fast as you can.', '6 seconds per rep, then switch roles or rest.', 'No partner? Use a random left/right reaction app.'],
+  reactstart: ['Start in a 2-point stance.', 'Partner claps or calls (or an app beeps). Go on the signal.', 'Sprint 10 m, walk back and rest 60 s.'],
+  shufsprint: ['Start in an athletic stance.', 'Shuffle 3 m fast, plant and stop.', 'Turn and sprint forward 5 m. 2 each way.'],
+
+  // Jumps and bounce -----------------------------------------------------------
+  jumpcheck: ['After the warm-up, stand side-on to a wall.', 'Dip and jump as high as you can with an arm swing. Mark the wall or use a jump app.', 'Do 3 and log your best.', 'Clearly lower than usual or legs heavy from Saturday? Do only 1 set of each Bounce drill today.'],
+  pogo: ['Stand tall, feet hip-width, arms relaxed.', 'Bounce using mostly your ankles. Knees bend only a little.', 'Get off the ground as fast as you can ("hot ground").', '!Landing on your heels or bending your knees a lot. That turns it into a squat jump.'],
+  linehop: ['Stand beside a line, feet together.', 'Hop side to side over it with tiny, fast hops.', 'Stay over the line; your head barely moves.'],
+  sllathop: ['Stand on one leg beside a line.', 'Hop side to side over the line on that leg.', 'Land and rebound instantly. 6 each leg.', '!Knee caving in on landing. Make the hops smaller until it doesn’t.'],
+  skater: ['Stand on your right leg.', 'Push off sideways and land on your left leg only.', 'Weeks 1–4: freeze 2 s on each landing. Weeks 5–8 onward: bound continuously side to side.', '!Landing with your knee caving in. Knee over toes.'],
+  hurdlefwd: ['Set 5 mini hurdles about 1 m apart.', 'Jump over them on two feet, rebounding off each landing as fast as you can.', 'Use your arms. Stay stiff at the ankle.'],
+  hurdlelat: ['Set 5 mini hurdles in a line and stand beside the first one.', 'Jump sideways over each hurdle on two feet, rebounding quickly.', 'Do one set leading each way.'],
+  bandjump: ['Loop a band over a pull-up bar or rack, and put it under your arms or attach it to a belt.', 'Dip and jump the instant you go down; the band takes some weight off.', 'Rebound off the floor quickly. You should feel fast and light.'],
+  boxjump: ['After a heavy squat set, rest about 4 minutes.', 'Stand in front of a box, swing your arms and jump onto it as high as you can.', 'Land softly in a half squat, then step down (don’t jump down).', 'Rest 2 minutes, then start the next squat set.'],
+
+  // Tests ----------------------------------------------------------------------
+  'test:t10': ['Mark 0 m and 10 m. Same surface and shoes every test.', 'Start in a 2-point stance (standing split stance).', 'Time from your first movement to crossing the 10 m line.', 'Take the best of 2–3 tries with full rest. No timing gates? Film at 240 fps and count frames.'],
+  'test:fly10': ['Set cones at 0, 20 and 30 m.', 'Build up through the first 20 m.', 'Time only the 10 m between the 20 m and 30 m cones.', 'Best of 2–3 tries, 4 min rest between.'],
+  'test:cmj': ['Stand side-on to a wall (or use a jump app).', 'Dip quickly and jump as high as you can with an arm swing.', 'Measure the height reached minus your standing reach, in cm.', 'Best of 3.'],
+  'test:sbj': ['Stand with your toes behind a line, feet hip-width.', 'Swing your arms, then jump forward as far as you can on two feet.', 'You must stick the landing. Measure from the line to your back heel.', 'Best of 3, in cm.'],
+  'test:f505L': ['Mark a timing line and a turn line 5 m past it.', 'Start 10 m before the timing line and sprint through it.', 'Run 5 m more, plant your LEFT foot on the turn line, turn 180° and sprint back through the timing line.', 'Time only the 5 m out and back (10 m total). Best of 2–3.'],
+  'test:f505R': ['Same as the left side, but plant your RIGHT foot on the turn line.', 'Time only the 5 m out and back. Best of 2–3.', 'A gap of more than about 10% between sides is worth fixing.'],
+  'test:pro': ['Set three cones 5 yards (about 4.6 m) apart in a line. Start at the middle one.', 'Sprint 5 yd to one side and touch the line.', 'Sprint 10 yd back the other way and touch that line.', 'Sprint 5 yd back through the middle. Best of 2–3.'],
+  'test:rm': ['Use a trap bar deadlift or back squat. Same lift every test.', 'Warm up with lighter sets of 5, 3, then 2.', 'Work up to the heaviest set of 3–5 reps you can do with 1 rep left in the tank.', 'Log the weight. Good form only: if form breaks, the set doesn’t count.'],
+  'test:hopL': ['Stand on your left leg behind a line.', 'Hop forward as far as you can and land on the same leg.', 'Stick it for 2 s. Measure from the line to your heel. Best of 3.'],
+  'test:hopR': ['Same as left, on your right leg.', 'Compare to your left: a gap over about 10% is worth fixing with extra single-leg work.'],
+
+  // Daily routines -----------------------------------------------------------------
+  'habit:primer': ['Pogo hops: 2 × 20, stiff ankles, quick off the ground.', 'Ankle dribbles: 2 × 15 m, small fast steps rolling over the ankle.', 'Single-leg balance, eyes closed: 30 s each leg.', 'Toe walks and heel walks: 15 m each.'],
+  'habit:micro': ['Run it as 2 rounds, 30 s rest between moves.', 'Dead bug: 8 each side.', 'Side plank: 30 s each side.', 'Bird dog: 8 each side.', 'Single-leg glute bridge: 10 each side.', 'Reaction catches: throw a tennis ball at a wall, catch with alternate hands, 45 s.'],
+  'habit:winddown': ['Legs up the wall: 2 min, slow breathing.', '90/90 hip switches: 8 each side, slow.', 'Couch stretch: 45 s each side.', 'Figure-4 glute stretch lying down: 45 s each side.', 'Child’s pose with side reach: 30 s each side.', 'Breathe in through your nose for 4 s, out for 6–8 s, 10 breaths.'],
+  'habit:protein': ['Aim for 1.4–2.0 g per kg of body weight a day.', 'Split it into 20–40 g servings every 3–4 hours.', 'Easy sources: eggs, Greek yogurt, chicken, tuna, milk, beans, or a shake if you’re rushed.'],
+});
