@@ -68,4 +68,5 @@ Object.assign(window.GUIDE, {
   sunmob: ['90/90 hip switches, ankle wall dorsiflexion, cat-camels, couch stretch and Cossack rock-backs.', 'About 2 minutes each, slow and relaxed.'],
   feet: ['Toe walks and heel walks, 15 m each.', 'Single-leg balance, 30 s each.', 'Towel scrunches: pull a towel toward you with your toes.'],
   sunroll: ['Foam roll your calves, quads and upper back, slow passes.'],
+  tantrum: ['Lie on your back with both heels on a bench or box, knees slightly bent.', 'Drive your heels down and lift your hips into a bridge. Hold the hips high the whole set.', 'Kick your heels down into the bench in fast, alternating stomps, like a toddler’s tantrum, for the set time.', 'Weeks 1–4: 3 × 15 s. Weeks 5–8: 4 × 20 s, faster. Weeks 9–12: single leg, other leg straight up, 4 × 10 s each leg.', 'Log the seconds you kept the hips up and the kicks fast. Rest 60 s between sets.', '!Letting the hips sag as you tire. End the set when they drop.'],
 });

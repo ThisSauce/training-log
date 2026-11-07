@@ -128,7 +128,7 @@
     const cat = {};
     C.P.DAYS.forEach((d) => d.forEach((s) => s.blocks.forEach((b) => b.ex.forEach((e) => { cat[e.id] = e.name; }))));
     const q = (v) => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
-    const rows = [['date', 'week', 'session', 'exercise', 'set', 'kg', 'reps', 'seconds', 'sprint_time_s', 'done', 'session_rpe', 'notes']];
+    const rows = [['date', 'week', 'session', 'exercise', 'set', 'lb', 'reps', 'seconds', 'sprint_time_s', 'done', 'session_rpe', 'notes']];
     C.allLogs().forEach((l) => {
       const sname = (C.P.DAYS.flat().find((s) => s.id === l.sid) || {}).title || l.sid;
       Object.keys(l.ex).forEach((id) => (l.ex[id].sets || []).forEach((s, i) => {
@@ -166,6 +166,30 @@
     } catch (e) { return e && e.name === 'AbortError' ? 'cancelled' : 'error'; }
   }
 
+  // Units: weights were logged in kg until Nov 2026, now lb. profile.unit === 'lb' marks
+  // data that is already converted; anything without it is converted once.
+  const LB = 2.20462, toLb = (v) => Math.round(+v * LB * 2) / 2;
+  function docToLb(d) {
+    if (!d || typeof d !== 'object') return d;
+    const c = JSON.parse(JSON.stringify(d));
+    if (c.kind === 'log' && c.ex) Object.values(c.ex).forEach((e) => (e && e.sets || []).forEach((s) => { if (s && +s.w > 0) s.w = toLb(s.w); }));
+    if (c.kind === 'test' && c.res && +c.res.rm > 0) c.res.rm = toLb(c.res.rm);
+    if (c.kind === 'profile') { if (+c.bw > 0) c.bw = toLb(c.bw); c.unit = 'lb'; }
+    return c;
+  }
+  function migrateUnits() {
+    if (!S.ready) return false;
+    const p = S.get('profile');
+    if (p && p.unit === 'lb') return false;
+    Object.keys(S.all()).forEach((id) => {
+      if (id === 'profile') return;
+      const d = S.get(id), c = docToLb(d);
+      if (JSON.stringify(c) !== JSON.stringify(d)) S.put(id, c);
+    });
+    S.put('profile', docToLb(Object.assign({}, C.profile(), { kind: 'profile' })));
+    return true;
+  }
+
   // Full backup: every stored document as one JSON file.
   const BACKUP_APP = 'andy-training-log';
   const DOC_ID = /^(profile|log_\d{4}-\d{2}-\d{2}_[\w-]{1,40}|test_\d{4}-\d{2}-\d{2}|day_\d{4}-\d{2}-\d{2}|sprint_\d{4}-\d{2}-\d{2}_[\w-]{1,40})$/;
@@ -185,9 +209,11 @@
     try { data = JSON.parse(await f.text()); } catch (e) { msg.textContent = 'That file isn’t a Training Log backup.'; return; }
     if (!data || data.app !== BACKUP_APP || !data.docs || typeof data.docs !== 'object') { msg.textContent = 'That file isn’t a Training Log backup.'; return; }
     let added = 0, kept = 0;
+    const kg = !(data.docs.profile && data.docs.profile.unit === 'lb'); // backup made before the switch to lb
     Object.keys(data.docs).forEach((id) => {
-      const d = data.docs[id];
+      let d = data.docs[id];
       if (!DOC_ID.test(id) || !d || typeof d !== 'object' || Array.isArray(d) || typeof d.kind !== 'string') return;
+      if (kg || id === 'profile') d = kg ? docToLb(d) : Object.assign({}, d, { unit: 'lb' });
       const cur = S.get(id);
       if (cur && +cur.updated > (+d.updated || 0)) { kept++; return; } // newer edit on this device wins
       S.put(id, d); added++;
@@ -251,7 +277,7 @@
     }
     else if (a === 'wipe') { st.confirmWipe = true; render(); }
     else if (a === 'wipe-no') { st.confirmWipe = false; render(); }
-    else if (a === 'wipe-yes') { Object.keys(S.all()).forEach((id) => S.remove(id)); st.confirmWipe = false; render(); }
+    else if (a === 'wipe-yes') { Object.keys(S.all()).forEach((id) => S.remove(id)); S.put('profile', { kind: 'profile', start: C.mondayOf(C.today()), bw: null, unit: 'lb' }); st.confirmWipe = false; render(); }
   });
 
   app.addEventListener('input', (ev) => {
@@ -298,11 +324,11 @@
   document.getElementById('gear').addEventListener('click', () => { st.prev = st.view === 'settings' ? st.prev : st.view; go('settings'); });
 
   S.onStatus(badge);
-  S.onData(() => { if (isTyping()) pending = true; else render(); });
+  S.onData(() => { migrateUnits(); if (isTyping()) pending = true; else render(); });
 
   const h = (location.hash || '').slice(1);
   if (VIEWS.includes(h)) st.view = h;
   window.addEventListener('hashchange', () => { const v = location.hash.slice(1); if (VIEWS.includes(v) && v !== st.view) go(v); });
   render();
-  S.init();
+  S.init().then(() => { if (migrateUnits()) render(); });
 })();

@@ -68,7 +68,7 @@ window.Views = (function () {
     const n = `<span class="sn">${pr ? '<b class="pr">PR</b>' : i + 1}</span>`;
     const tick = `<button class="tick${cur.done ? ' on' : ''}" data-act="tick" data-ex="${e.id}" data-set="${i}" aria-pressed="${!!cur.done}" aria-label="Set ${i + 1} done">✓</button>`;
     const inp = (f, label, step, val, phv) => `<label class="fld"><input id="i-${e.id}-${i}-${f}" type="number" inputmode="decimal" step="${step}" min="0" data-ex="${e.id}" data-set="${i}" data-f="${f}" value="${esc(val || '')}" placeholder="${phv}"><span>${label}</span></label>`;
-    if (e.type === 'w') return `<div class="set">${n}${inp('w', 'kg', '0.5', cur.w, ph('w'))}<span class="x">×</span>${inp('r', /s each|s$/.test(e.target) ? 's' : 'reps', '1', cur.r, ph('r'))}${tick}</div>`;
+    if (e.type === 'w') return `<div class="set">${n}${inp('w', 'lb', '0.5', cur.w, ph('w'))}<span class="x">×</span>${inp('r', /s each|s$/.test(e.target) ? 's' : 'reps', '1', cur.r, ph('r'))}${tick}</div>`;
     if (e.type === 'r') return `<div class="set">${n}${inp('r', e.unit || 'reps', '1', cur.r, ph('r'))}${tick}</div>`;
     if (e.type === 't') return `<div class="set">${n}${inp('t', 'sec', '1', cur.t, ph('t'))}${tick}</div>`;
     if (e.type === 's') return `<div class="set">${n}${inp('time', 'sec', '0.01', cur.time, ph('time'))}${tick}</div>`;
@@ -81,7 +81,7 @@ window.Views = (function () {
     if (e.type === 'w' && last) {
       const top = C.topOfRange(e.target);
       const lastSets = last.sets.filter((s) => +s.w > 0);
-      if (top && lastSets.length >= e.sets && lastSets.every((s) => +s.r >= top)) suggest = '<p class="up">Every set hit the top of the range last time: add 2.5–5 kg.</p>';
+      if (top && lastSets.length >= e.sets && lastSets.every((s) => +s.r >= top)) suggest = '<p class="up">Every set hit the top of the range last time: add 5–10 lb.</p>';
     }
     const lastTxt = last ? `<span class="last">Last (${esc(C.fmtDate(last.date))}): ${esc(last.sets.filter(C.filled).map((s) => s.w ? s.w + '×' + (s.r || '?') : s.time ? s.time + 's' : s.r || s.t || '✓').join(', '))}</span>` : '';
     let body = '';
@@ -170,7 +170,7 @@ window.Views = (function () {
     let h = `<div class="stats">
       <div class="stat"><b>${done}/${planned}</b><span>sessions done this week</span></div>
       <div class="stat"><b>${logs.length}</b><span>sessions logged in total</span></div>
-      <div class="stat"><b>${Math.round(vol).toLocaleString()}</b><span>kg lifted this week</span></div></div>`;
+      <div class="stat"><b>${Math.round(vol).toLocaleString()}</b><span>lb lifted this week</span></div></div>`;
     h += key ? exerciseChart(cat, keys, testKeys, key) : '<p class="empty">Your exercise charts appear here once you log weights, sprint times or test results. Open today’s session to log your first sets.</p>';
     return h + volumeBlock(st) + sleepBlock(st);
   }
@@ -182,9 +182,9 @@ window.Views = (function () {
     const rows = C.weekVolumes(cyc);
     const tbl = rows.filter((r) => r.kg).map((r) => `<tr><td>${r.w}${r.dl ? ' (deload)' : ''}</td><td>${esc(P.PHASES[r.ph].name)}</td><td>${r.kg.toLocaleString()}</td><td>${r.n}</td></tr>`).join('');
     return `<section class="block"><h3>Weekly volume · cycle ${cyc}</h3>
-      <p class="note">Total kg × reps across every weighted set. It should build through each phase and come down on deload weeks (D).</p>
+      <p class="note">Total lb × reps across every weighted set. It should build through each phase and come down on deload weeks (D).</p>
       <div class="chartwrap">${C.volumeChart(rows, cur)}</div>${phaseLegend('<span>Faded bar = deload · T = test week</span>')}
-      ${tbl ? `<details class="tblwrap"><summary>Show as table</summary><table class="tbl"><thead><tr><th>Week</th><th>Phase</th><th>kg</th><th>Sessions</th></tr></thead><tbody>${tbl}</tbody></table></details>` : ''}</section>`;
+      ${tbl ? `<details class="tblwrap"><summary>Show as table</summary><table class="tbl"><thead><tr><th>Week</th><th>Phase</th><th>lb</th><th>Sessions</th></tr></thead><tbody>${tbl}</tbody></table></details>` : ''}</section>`;
   }
 
   function sleepBlock(st) {
@@ -276,7 +276,7 @@ window.Views = (function () {
     const p = C.profile(), mode = C.S.mode;
     return `<button class="back" data-act="back">‹ Back</button><h2 class="dayhead">Settings</h2>
       <section class="block"><label class="row"><span>Week 1 starts (Monday)</span><input id="set-start" type="date" data-set-profile="start" value="${esc(p.start)}"></label>
-      <label class="row"><span>Body weight</span><span class="fld"><input id="set-bw" type="number" inputmode="decimal" step="0.5" min="0" data-set-profile="bw" value="${esc(p.bw || '')}"><span>kg</span></span></label>
+      <label class="row"><span>Body weight</span><span class="fld"><input id="set-bw" type="number" inputmode="decimal" step="0.5" min="0" data-set-profile="bw" value="${esc(p.bw || '')}"><span>lb</span></span></label>
       <p class="note">${mode === 'cloud' ? 'Your log is saved privately to your Claude account, so it follows you to any device where you open this page signed in. Nobody else who opens this page can see it.' : window.claude ? 'Your log is saved in this browser only. Open the page signed in to claude.ai to keep it on your account.' : 'Your log is saved on this phone only. Save a backup file every week or two so nothing is lost if the phone is reset or replaced.'}</p></section>
       <section class="block"><h3>Backup file</h3><p class="note">Saves everything (sets, tests, sleep, daily checks, settings) to one file. Restore it here or in your other copy of the app to bring your log across.</p>
       <div class="you"><button class="btn" data-act="backup">Save backup file</button><label class="btn" for="restore-file">Restore from file</label></div>

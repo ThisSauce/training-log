@@ -7,6 +7,7 @@ window.Store = (function () {
   let col = null;
   let mode = 'local'; // 'local' | 'cloud'
   let status = 'loading';
+  let ready = false; // true once the full data set is loaded (cloud: first server snapshot)
   let flushing = false;
   let timer = null;
   const listeners = [];
@@ -31,7 +32,7 @@ window.Store = (function () {
         uid = u ? await u.id() : null;
       }
     } catch (e) { db = null; }
-    if (!db || !uid) { mode = 'local'; setStatus('local'); return; }
+    if (!db || !uid) { mode = 'local'; ready = true; setStatus('local'); return; }
     mode = 'cloud';
     col = db.collection('data/users/' + uid);
     let first = true;
@@ -48,6 +49,7 @@ window.Store = (function () {
       if (changed) dataListeners.forEach((fn) => fn());
       if (first && !snap.metadata.fromCache) {
         first = false;
+        ready = true;
         clearTimeout(slow);
         // First visit on this account: carry anything logged on this device up.
         const local = readLocal();
@@ -59,7 +61,7 @@ window.Store = (function () {
       }
       writeLocal();
       setStatus(dirty.size ? 'saving' : 'saved');
-    }, () => { clearTimeout(slow); mode = 'local'; setStatus('local'); });
+    }, () => { clearTimeout(slow); mode = 'local'; ready = true; setStatus('local'); dataListeners.forEach((fn) => fn()); });
   }
 
   function schedule() {
@@ -101,5 +103,6 @@ window.Store = (function () {
     onData(fn) { dataListeners.push(fn); },
     get status() { return status; },
     get mode() { return mode; },
+    get ready() { return ready; },
   };
 })();

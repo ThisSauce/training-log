@@ -63,5 +63,5 @@ Object.assign(window.GUIDE, {
   'habit:primer': ['Pogo hops: 2 × 20, stiff ankles, quick off the ground.', 'Ankle dribbles: 2 × 15 m, small fast steps rolling over the ankle.', 'Single-leg balance, eyes closed: 30 s each leg.', 'Toe walks and heel walks: 15 m each.'],
   'habit:micro': ['Run it as 2 rounds, 30 s rest between moves.', 'Dead bug: 8 each side.', 'Side plank: 30 s each side.', 'Bird dog: 8 each side.', 'Single-leg glute bridge: 10 each side.', 'Reaction catches: throw a tennis ball at a wall, catch with alternate hands, 45 s.'],
   'habit:winddown': ['Legs up the wall: 2 min, slow breathing.', '90/90 hip switches: 8 each side, slow.', 'Couch stretch: 45 s each side.', 'Figure-4 glute stretch lying down: 45 s each side.', 'Child’s pose with side reach: 30 s each side.', 'Breathe in through your nose for 4 s, out for 6–8 s, 10 breaths.'],
-  'habit:protein': ['Aim for 1.4–2.0 g per kg of body weight a day.', 'Split it into 20–40 g servings every 3–4 hours.', 'Easy sources: eggs, Greek yogurt, chicken, tuna, milk, beans, or a shake if you’re rushed.'],
+  'habit:protein': ['Aim for 0.65–0.9 g per lb of body weight a day (about 110–150 g at 170 lb).', 'Split it into 20–40 g servings every 3–4 hours.', 'Easy sources: eggs, Greek yogurt, chicken, tuna, milk, beans, or a shake if you’re rushed.'],
 });

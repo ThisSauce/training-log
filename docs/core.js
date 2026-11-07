@@ -107,7 +107,7 @@ window.Core = (function () {
       if (e.type === 'w') {
         let best = null;
         x.sets.forEach((st) => { const v = e1rm(+st.w, +st.r); if (v && (!best || v > best.v)) best = { v, st }; });
-        if (best) pts.push({ date: l.date, y: Math.round(best.v * 10) / 10, label: best.st.w + ' kg × ' + best.st.r });
+        if (best) pts.push({ date: l.date, y: Math.round(best.v * 10) / 10, label: best.st.w + ' lb × ' + best.st.r });
       } else if (e.type === 's') {
         const times = x.sets.map((st) => +st.time).filter((v) => v > 0);
         if (times.length) pts.push({ date: l.date, y: Math.min(...times), label: Math.min(...times).toFixed(2) + ' s' });
@@ -116,7 +116,7 @@ window.Core = (function () {
         if (v) pts.push({ date: l.date, y: v, label: v + ' ' + (e.unit || '') });
       }
     }
-    const unit = e.type === 'w' ? 'kg est. 1RM' : e.type === 's' ? 's best rep' : (e.unit || 'reps');
+    const unit = e.type === 'w' ? 'lb est. 1RM' : e.type === 's' ? 's best rep' : (e.unit || 'reps');
     return { name: e.name, unit, lower: e.type === 's', pts };
   }
 
@@ -173,7 +173,7 @@ window.Core = (function () {
     return svg + '</svg>';
   }
 
-  // Tonnage (kg × reps over every weighted set) and sessions per plan week of a cycle.
+  // Tonnage (lb × reps over every weighted set) and sessions per plan week of a cycle.
   function weekVolumes(cycle) {
     const logs = allLogs(), out = [];
     for (let w = 1; w <= 12; w++) {
@@ -196,7 +196,7 @@ window.Core = (function () {
 
   function volumeChart(rows, curWeek) {
     const max = Math.max(...rows.map((r) => r.kg));
-    if (!max) return '<p class="empty">No weighted sets in this cycle yet. Each week gets a bar once you log kg and reps.</p>';
+    if (!max) return '<p class="empty">No weighted sets in this cycle yet. Each week gets a bar once you log weight and reps.</p>';
     const W = 640, H = 220, L = 48, R = 12, T = 16, B = 44, hi = niceCeil(max);
     const slot = (W - L - R) / 12, bw = Math.min(34, slot - 8), y = (v) => T + (1 - v / hi) * (H - T - B);
     let svg = `<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="Weekly volume for weeks 1 to 12, coloured by phase">`;
@@ -209,7 +209,7 @@ window.Core = (function () {
       svg += `<text x="${cx}" y="${H - 24}" class="tick${now ? ' now' : ''}" text-anchor="middle">${r.w}</text>`;
       const tag = (r.dl ? 'D' : '') + (r.test ? 'T' : '');
       if (tag) svg += `<text x="${cx}" y="${H - 3}" class="tick" text-anchor="middle">${tag}</text>`;
-      const tip = `Week ${r.w} · ${P.PHASES[r.ph].name}${r.dl ? ' · deload' : ''}: ${r.kg.toLocaleString()} kg over ${r.n} session${r.n === 1 ? '' : 's'}`;
+      const tip = `Week ${r.w} · ${P.PHASES[r.ph].name}${r.dl ? ' · deload' : ''}: ${r.kg.toLocaleString()} lb over ${r.n} session${r.n === 1 ? '' : 's'}`;
       svg += `<rect x="${(cx - slot / 2).toFixed(1)}" y="${T}" width="${slot.toFixed(1)}" height="${H - T - 4}" class="hit"><title>${esc(tip)}</title></rect>`;
     });
     return svg + '</svg>';

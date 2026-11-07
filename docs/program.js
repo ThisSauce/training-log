@@ -42,6 +42,7 @@ window.PROGRAM = (function () {
         ] },
         { title: 'Strength and chest', ex: [
           { id: 'latlunge', name: 'Lateral lunge (or Cossack squat)', sets: 3, target: '6 each', type: 'w', rest: '90 s', cue: 'Moderate, control the drop' },
+          { id: 'tantrum', name: 'Hamstring tantrums', sets: 3, target: '15 s', type: 't', rest: '60 s', cue: 'Heels on a bench, hips high, fast alternating heel kicks', vary: (w) => w >= 9 ? { sets: 4, target: '10 s each leg', name: 'Single-leg hamstring tantrums', cue: 'One heel on the bench, other leg up, fastest kicks you can, hips stay high' } : w >= 5 ? { sets: 4, target: '20 s', cue: 'Faster kicks than last phase, hips never drop' } : null },
           { id: 'inclinedb', name: 'Incline DB press (30°)', sets: 4, target: '6–8', type: 'w', rest: '2–2.5 min', cue: 'Heavy, RPE 8–9' },
           { id: 'lhfly', name: 'Low-to-high cable fly', sets: 3, target: '12–15', type: 'w', rest: '75 s', cue: 'RPE 8–9' },
           { id: 'latraise', name: 'DB lateral raise', sets: 3, target: '12–15', type: 'w', rest: '60 s', cue: 'RPE 9' },
@@ -225,7 +226,7 @@ window.PROGRAM = (function () {
     { id: 'f505L', name: '5-0-5 left', unit: 's', lower: true },
     { id: 'f505R', name: '5-0-5 right', unit: 's', lower: true },
     { id: 'pro', name: '5-10-5 pro agility', unit: 's', lower: true },
-    { id: 'rm', name: 'Squat / trap bar 3–5RM', unit: 'kg' },
+    { id: 'rm', name: 'Squat / trap bar 3–5RM', unit: 'lb' },
     { id: 'hopL', name: 'Single-leg hop, left', unit: 'cm' },
     { id: 'hopR', name: 'Single-leg hop, right', unit: 'cm' },
   ];
@@ -233,7 +234,7 @@ window.PROGRAM = (function () {
   const HABITS = [
     { id: 'primer', name: 'Speed feet primer before leg or field work', days: [0, 1, 2, 4, 5] },
     { id: 'micro', name: 'Easy-day micro circuit (10 min)', days: [1, 3, 6] },
-    { id: 'protein', name: 'Protein target hit (1.4–2.0 g/kg)' },
+    { id: 'protein', name: 'Protein target hit (0.65–0.9 g/lb)' },
     { id: 'water', name: 'Water: pale-yellow by evening' },
     { id: 'winddown', name: 'Bedtime wind-down (10 min)' },
     { id: 'lights', name: 'Phone away, lights out on time' },
