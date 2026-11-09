@@ -12,8 +12,11 @@ window.PROGRAM = (function () {
   const TEST_WEEKS = [1, 6, 12];
   // One-off test moves: date the test was due -> where it went, and today's note.
   const TEST_MOVES = {
-    '2026-11-07': { to: '2026-11-14', note: 'Rained out: the test battery moved to Sat Nov 14, so do the normal session today. Rainy-day version: 3 flying sprints instead of 4 on the 40-yard turf; everything else as normal.' },
+    '2026-11-07': { to: '2026-11-14', note: 'Rained out: the test battery moved to Sat Nov 14, so do the normal session today. Rainy-day version: Movati’s turf is only 25 yards (about 23 m), too short for flying sprints, so swap them for light sled sprints; everything else as normal.' },
   };
+  // Cold-weather season: Movati’s indoor turf is only 25 yards (~23 m), so long sprints get indoor swaps.
+  const INDOOR = { from: '2026-11-09', to: '2027-03-31' };
+  const indoorOn = (date) => { const d = date || new Date().toISOString().slice(0, 10); return d >= INDOOR.from && d <= INDOOR.to; };
   const RAMP = { id: 'ramp', name: 'RAMP warm-up', sets: 1, target: '15 min', type: 'x', cue: 'Raise · Activate · Mobilise · Potentiate. End ready to go full speed.' };
 
   const DAYS = [
@@ -158,7 +161,7 @@ window.PROGRAM = (function () {
           { id: 'onevone', name: '1v1 to a line', sets: 6, target: 'reps', type: 'x' },
         ] },
         { title: 'Repeat sprints (end of session, 5 min)', note: 'One set only: Saturday’s speed session is the next day. If your Saturday sprint times start dropping, move this block to the end of Monday.', ex: [
-          { id: 'rsa', name: 'Repeat sprints, 30 m all-out', sets: 6, target: '30 m', type: 's', rest: '20 s', cue: 'Walk back slowly; 20 s between sprints' },
+          { id: 'rsa', name: 'Repeat sprints, 30 m all-out', sets: 6, target: '30 m', type: 's', rest: '20 s', cue: 'Walk back slowly; 20 s between sprints', indoor: { id: 'bikesprint', name: 'Air bike sprints (indoor swap for repeat sprints)', target: '8 s', type: 'x', rest: '20 s', cue: 'All-out 8 s, easy pedalling for 20 s, 6 rounds' } },
         ] },
       ],
     }],
@@ -169,9 +172,9 @@ window.PROGRAM = (function () {
       blocks: [
         { title: 'Warm-up', ex: [RAMP] },
         { title: 'Speed', note: 'Rest fully. Stop the set if you slow down. Times are optional.', testSkip: true, ex: [
-          { id: 'accel', name: 'Accelerations, mixed starts', sets: 6, target: '15 m', type: 's', rest: '2 min', cue: '2-point, falling, side-on, defensive turn-and-go', vary: (w) => w >= 5 && w <= 8 ? { sets: 3, cue: 'Weeks 5–8: the other 3 are sled or hill sprints below' } : null },
+          { id: 'accel', name: 'Accelerations, mixed starts', sets: 6, target: '15 m', type: 's', rest: '2 min', cue: '2-point, falling, side-on, defensive turn-and-go', indoor: { target: '10 m', cue: 'Indoor turf: sprint 10 m, slow down over the rest of the turf. 2-point, falling, side-on, defensive turn-and-go' }, vary: (w) => w >= 5 && w <= 8 ? { sets: 3, cue: 'Weeks 5–8: the other 3 are sled or hill sprints below' } : null },
           { id: 'sled', name: 'Sled or hill sprints', sets: 3, target: '15–20 m', type: 's', weeks: [5, 8], rest: '2–3 min', cue: 'Load slows your 20 m by about 10–20%' },
-          { id: 'flying', name: 'Flying sprints (25 m build-up)', sets: 4, target: '15 m', type: 's', rest: '3–4 min', vary: (w) => w >= 9 ? { target: '20 m' } : null },
+          { id: 'flying', name: 'Flying sprints (25 m build-up)', sets: 4, target: '15 m', type: 's', rest: '3–4 min', vary: (w) => w >= 9 ? { target: '20 m' } : null, indoor: (w) => ({ id: 'sledspeed', name: 'Light sled sprints (indoor swap for flying sprints)', target: w >= 9 ? '20 m' : '15 m', rest: '3 min', cue: 'Light: no more than about 10% slower than unloaded. Tall, fast, powerful push-off' }) },
         ] },
         { title: 'Instant stop', note: 'Drop hips early, short choppy steps, outside foot wide, knee over toes, freeze 2 s.', testSkip: true, ex: [
           { id: 'snapstick', name: 'Snap-down to stick', sets: 3, target: '4', type: 'x', weeks: [1, 4] },
@@ -253,6 +256,8 @@ window.PROGRAM = (function () {
       for (const e0 of b.ex) {
         if (e0.weeks && (week < e0.weeks[0] || week > e0.weeks[1])) continue;
         const e = Object.assign({}, e0, e0.vary ? e0.vary(week) || {} : {});
+        if (e0.indoor && indoorOn(date)) Object.assign(e, typeof e0.indoor === 'function' ? e0.indoor(week) : e0.indoor);
+        delete e.indoor;
         if (deload && e.sets >= 3 && e.type !== 'x') e.sets = Math.max(2, Math.round(e.sets * 2 / 3));
         if (test && e.id === 'squat') Object.assign(e, { sets: 0, cue: 'Test week: your 3–5RM test counts as today’s squat.' });
         if (test && e.type === 'w' && e.id !== 'squat') e.cue = 'Test week: lighter effort, RPE 7';
@@ -265,5 +270,5 @@ window.PROGRAM = (function () {
     return Object.assign({}, session, { blocks, test, deload });
   }
 
-  return { DAYS, TESTS, HABITS, PHASES, DELOAD, TEST_WEEKS, TEST_MOVES, phaseOf, resolve };
+  return { DAYS, TESTS, HABITS, PHASES, DELOAD, TEST_WEEKS, TEST_MOVES, INDOOR, indoorOn, phaseOf, resolve };
 })();
