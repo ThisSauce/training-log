@@ -28,8 +28,25 @@ window.Core = (function () {
 
   function sessionsFor(date) {
     const w = weekOf(date), d = dayIdx(date);
-    return P.DAYS[d].map((s) => P.resolve(s, w, d, date));
+    const o = (P.DATE_OVERRIDES || {})[date];
+    if (!o) return P.DAYS[d].map((s) => P.resolve(s, w, d, date));
+    const out = [];
+    if (o.use) {
+      for (const u of o.use) {
+        const src = P.DAYS.findIndex((day) => day.some((s) => s.id === u.id));
+        const base = P.DAYS[src].find((s) => s.id === u.id);
+        const r = P.resolve(base, w, src, date);
+        if (u.drop) r.blocks = r.blocks.map((b) => Object.assign({}, b, { ex: b.ex.filter((e) => !u.drop.includes(e.id)) })).filter((b) => b.ex.length || !b.title || b.testLink || b.note);
+        if (u.slot) r.slot = u.slot;
+        out.push(r);
+      }
+    } else {
+      for (const s of P.DAYS[d]) if (!(o.skip || []).includes(s.id)) out.push(P.resolve(s, w, d, date));
+    }
+    if (o.note) out.forEach((r) => { r.blocks = [{ title: 'Schedule change', note: o.note, ex: [] }].concat(r.blocks); });
+    return out;
   }
+  const isGameDay = (date) => dayIdx(date) === 2 && !(((P.DATE_OVERRIDES || {})[date] || {}).noGame);
   const logId = (date, sid) => 'log_' + date + '_' + sid;
   function getLog(date, sid) {
     return S.get(logId(date, sid)) || { kind: 'log', date, sid, week: weekOf(date), ex: {}, rpe: null, notes: '', done: false };
@@ -250,6 +267,6 @@ window.Core = (function () {
   }
 
   return { P, S, DAY_NAMES, DAY_LONG, esc, iso, parse, addDays, dayIdx, mondayOf, today, fmtDate, diffDays,
-    profile, weekAbs, weekOf, cycleOf, dateFor, sessionsFor, logId, getLog, setOf, filled, progress,
+    profile, weekAbs, weekOf, cycleOf, dateFor, sessionsFor, isGameDay, logId, getLog, setOf, filled, progress,
     allLogs, lastFor, bestBefore, restSeconds, topOfRange, e1rm, catalogue, series, lineChart, weekVolumes, volumeChart, sleepEffort, sleepEffortChart, isFlag };
 })();

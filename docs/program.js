@@ -17,6 +17,13 @@ window.PROGRAM = (function () {
   // Cold-weather season: Movati’s indoor turf is only 25 yards (~23 m), so long sprints get indoor swaps.
   const INDOOR = { from: '2026-11-09', to: '2027-03-31' };
   const indoorOn = (date) => { const d = date || new Date().toISOString().slice(0, 10); return d >= INDOOR.from && d <= INDOOR.to; };
+  // One-off schedule changes by date. skip: session ids to hide; use: [{ id, slot, drop }] runs another day's session
+  // (drop = exercise ids left out); noGame hides the Game tag; note shows at the top of each session that day.
+  const DATE_OVERRIDES = {
+    '2026-11-10': { skip: ['tueam'], note: 'No game this Wednesday, so the game prime is off today. Keep the evening pull session.' },
+    '2026-11-11': { noGame: true, use: [{ id: 'mon', slot: 'Morning', drop: ['inclinedb', 'lhfly', 'latraise', 'pushdown'] }], note: 'No game today: this is Monday’s missed session (bounce, turning, lunges, tantrums, calves). The chest and arm finishers are dropped because Thursday is chest day.' },
+    '2026-11-12': { skip: ['thuflush'], note: 'No game yesterday, so no recovery flush. Push (chest) as normal.' },
+  };
   const RAMP = { id: 'ramp', name: 'RAMP warm-up', sets: 1, target: '15 min', type: 'x', cue: 'Raise · Activate · Mobilise · Potentiate. End ready to go full speed.' };
 
   const DAYS = [
@@ -270,5 +277,5 @@ window.PROGRAM = (function () {
     return Object.assign({}, session, { blocks, test, deload });
   }
 
-  return { DAYS, TESTS, HABITS, PHASES, DELOAD, TEST_WEEKS, TEST_MOVES, INDOOR, indoorOn, phaseOf, resolve };
+  return { DAYS, TESTS, HABITS, PHASES, DELOAD, TEST_WEEKS, TEST_MOVES, DATE_OVERRIDES, INDOOR, indoorOn, phaseOf, resolve };
 })();

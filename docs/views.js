@@ -22,7 +22,7 @@ window.Views = (function () {
       const all = prs.length && prs.every((p) => p.complete), some = prs.some((p) => p.done);
       h += `<button class="day${date === sel ? ' sel' : ''}${date === t ? ' now' : ''}" data-act="date" data-date="${date}" role="tab" aria-selected="${date === sel}">
         <span class="dn">${C.DAY_NAMES[d]}</span><span class="dd">${C.parse(date).getDate()}</span>
-        <span class="mark ${all ? 'full' : some ? 'half' : ''}"></span>${d === 2 ? '<span class="gm">Game</span>' : ''}</button>`;
+        <span class="mark ${all ? 'full' : some ? 'half' : ''}"></span>${C.isGameDay(date) ? '<span class="gm">Game</span>' : ''}</button>`;
     }
     return h + '</div>';
   }
@@ -142,7 +142,7 @@ window.Views = (function () {
     h += '<div class="weeklist">';
     for (let d = 0; d < 7; d++) {
       const date = C.addDays(mon, d);
-      h += `<div class="wday"><div class="wdh"><b>${C.DAY_NAMES[d]}</b> ${esc(C.fmtDate(date))}${d === 2 ? ' · <span class="gm">Game</span>' : ''}</div>`;
+      h += `<div class="wday"><div class="wdh"><b>${C.DAY_NAMES[d]}</b> ${esc(C.fmtDate(date))}${C.isGameDay(date) ? ' · <span class="gm">Game</span>' : ''}</div>`;
       C.sessionsFor(date).forEach((s) => {
         const pr = C.progress(s, C.getLog(date, s.id));
         h += `<button class="wsess" data-act="open" data-date="${date}" data-sid="${s.id}"><span>${esc(s.title)}</span>${pill(pr, s.optional)}</button>`;
