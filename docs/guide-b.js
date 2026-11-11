@@ -59,6 +59,7 @@ Object.assign(window.GUIDE, {
   rsa: ['Mark 30 m. Do this at the end of the session.', 'Sprint 30 m all-out.', 'Walk back slowly; start the next sprint 20 s after you finish.', '6 sprints, one set only. Times are optional; your later sprints should stay close to your first.', '!Pacing yourself. Every rep is all-out; the fatigue is the point.'],
   bikesprint: ['Use the air (fan) bike. Warm up for 1 minute easy.', 'Sprint all-out for 8 s, then pedal easily for 20 s.', '6 rounds, one set only. This replaces the 30 m repeat sprints while you train indoors.', '!Holding back on later rounds. Each 8 s is all-out.'],
   bike: ['Warm up for 2 minutes easy.', 'Sprint all-out for 15 s, then pedal easily for 45 s.', 'Repeat for 8 rounds. Skip it after a late Thursday event.'],
+  easyrun: ['Start Strava, then run at a pace where you could talk in full sentences (about 6 min/km).', 'Short, quick, quiet steps. Land under your hips, not out in front.', 'Treadmill: set 1% incline so it feels like running outside.', 'When you finish, copy the distance from Strava into the km box. Walking doesn’t count for the challenge.', '!Speeding up to finish sooner. Easy runs keep your legs fresh for Saturday’s sprints and Wednesday’s game.'],
   flushbike: ['10 minutes of brisk walking or a light jog.', 'You should finish feeling better than you started.'],
   flushmob: ['Ankle rocks, hip circles and leg swings, about 1–2 minutes each.'],
   flushroll: ['Roll your calves and quads slowly, about 1 minute per area.', 'Pause on tight spots for a few breaths.'],

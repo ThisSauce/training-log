@@ -24,6 +24,24 @@ window.PROGRAM = (function () {
     '2026-11-11': { noGame: true, use: [{ id: 'mon', slot: 'Morning', drop: ['inclinedb', 'lhfly', 'latraise', 'pushdown'] }], note: 'No game today: this is Monday’s missed session (bounce, turning, lunges, tantrums, calves). The chest and arm finishers are dropped because Thursday is chest day.' },
     '2026-11-12': { skip: ['thuflush'], note: 'No game yesterday, so no recovery flush. Push (chest) as normal.' },
   };
+  // Frat philanthropy: 100 km of running (Strava-tracked, walking doesn't count) by Nov 30. Easy pace only.
+  // plan: date -> km. Slots and placement by weekday (0 = Mon); Thu replaces the flush, Sun replaces the walk/jog.
+  const RUN_CHALLENGE = {
+    from: '2026-11-11', to: '2026-11-30', goal: 100,
+    plan: {
+      '2026-11-12': 6, '2026-11-13': 5, '2026-11-15': 8,
+      '2026-11-16': 7, '2026-11-17': 4, '2026-11-19': 7, '2026-11-20': 6, '2026-11-22': 10,
+      '2026-11-23': 8, '2026-11-24': 5, '2026-11-26': 8, '2026-11-27': 6, '2026-11-29': 12,
+      '2026-11-30': 8,
+    },
+    slots: {
+      0: { slot: 'Early morning', when: '6:45–7:35am, before work', first: true, oneSet: { mon: ['pogo', 'linehop', 'sllathop', 'skater', 'hurdlefwd', 'hurdlelat'] } },
+      1: { slot: 'Late evening', when: 'Movati treadmill right after pull, about 9–9:25pm', first: false },
+      3: { slot: 'Afternoon', when: 'about 2:30pm at York (after your last test on Nov 19), before push', first: true, skip: ['thuflush'] },
+      4: { slot: 'Late morning', when: 'Movati treadmill right after ankles + pull, about 9:50–10:25am', after: 'friam', drop: { fripm: ['rsa', 'bikesprint'] } },
+      6: { slot: 'Early morning', when: '6:30–7:45am, before study', first: true, drop: { sun: ['easycardio'] } },
+    },
+  };
   const RAMP = { id: 'ramp', name: 'RAMP warm-up', sets: 1, target: '15 min', type: 'x', cue: 'Raise · Activate · Mobilise · Potentiate. End ready to go full speed.' };
 
   const DAYS = [
@@ -277,5 +295,5 @@ window.PROGRAM = (function () {
     return Object.assign({}, session, { blocks, test, deload });
   }
 
-  return { DAYS, TESTS, HABITS, PHASES, DELOAD, TEST_WEEKS, TEST_MOVES, DATE_OVERRIDES, INDOOR, indoorOn, phaseOf, resolve };
+  return { DAYS, TESTS, HABITS, PHASES, DELOAD, TEST_WEEKS, TEST_MOVES, DATE_OVERRIDES, INDOOR, RUN_CHALLENGE, indoorOn, phaseOf, resolve };
 })();

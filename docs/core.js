@@ -29,7 +29,7 @@ window.Core = (function () {
   function sessionsFor(date) {
     const w = weekOf(date), d = dayIdx(date);
     const o = (P.DATE_OVERRIDES || {})[date];
-    if (!o) return P.DAYS[d].map((s) => P.resolve(s, w, d, date));
+    if (!o) return withRun(P.DAYS[d].map((s) => P.resolve(s, w, d, date)), date, d);
     const out = [];
     if (o.use) {
       for (const u of o.use) {
@@ -44,7 +44,42 @@ window.Core = (function () {
       for (const s of P.DAYS[d]) if (!(o.skip || []).includes(s.id)) out.push(P.resolve(s, w, d, date));
     }
     if (o.note) out.forEach((r) => { r.blocks = [{ title: 'Schedule change', note: o.note, ex: [] }].concat(r.blocks); });
-    return out;
+    return withRun(out, date, d);
+  }
+
+  // 100 km run challenge: km logged on the planned run sessions so far.
+  function runKm(upTo) {
+    const rc = P.RUN_CHALLENGE;
+    if (!rc) return 0;
+    let km = 0;
+    for (const doc of Object.values(S.all())) {
+      if (!doc || doc.kind !== 'log' || doc.sid !== 'run' || doc.date < rc.from || doc.date > rc.to || (upTo && doc.date > upTo)) continue;
+      const e = doc.ex && doc.ex.easyrun;
+      for (const st of (e && e.sets) || []) km += +(st && st.r) || 0;
+    }
+    return Math.round(km * 10) / 10;
+  }
+  // Adds the planned run to a day's sessions (and drops what it replaces).
+  function withRun(list, date, d) {
+    const rc = P.RUN_CHALLENGE, km = rc && rc.plan[date], sl = rc && rc.slots[d];
+    if (!km || !sl) return list;
+    let out = list.filter((s) => !(sl.skip || []).includes(s.id));
+    if (sl.drop) out = out.map((s) => sl.drop[s.id] ? Object.assign({}, s, { blocks: s.blocks.filter((b) => !b.ex.length || b.ex.some((e) => !sl.drop[s.id].includes(e.id))).map((b) => Object.assign({}, b, { ex: b.ex.filter((e) => !sl.drop[s.id].includes(e.id)) })) }) : s);
+    if (sl.oneSet) out = out.map((s) => sl.oneSet[s.id] ? Object.assign({}, s, { blocks: s.blocks.map((b) => Object.assign({}, b, { ex: b.ex.map((e) => sl.oneSet[s.id].includes(e.id) ? Object.assign({}, e, { sets: 1, cue: (e.cue ? e.cue + '. ' : '') + '1 set during the run challenge' }) : e) })) }) : s);
+    const planned = Object.entries(rc.plan).filter(([k]) => k < date).reduce((a, [, v]) => a + v, 0);
+    const done = runKm();
+    const run = {
+      id: 'run', slot: sl.slot, title: `Easy run, ${km} km (100 km challenge)`, mins: Math.round(km * 6),
+      intro: `Frat philanthropy: ${rc.goal} km by Nov 30, tracked on Strava (walking doesn't count). ${sl.when}. Conversational pace only, about 6 min/km.`,
+      blocks: [{
+        title: 'Run',
+        note: `Logged so far: ${done} of ${rc.goal} km (plan before today: ${planned} km). Missed a run? Spread the km over the next few runs; never on a Saturday or game day. Sharp shin or Achilles pain: stop and walk home.`,
+        ex: [{ id: 'easyrun', name: 'Easy run (copy the km from Strava)', sets: 1, target: `${km} km`, type: 'r', unit: 'km', step: '0.01', cue: 'Easy enough to talk in full sentences. Short, quick steps.' }],
+      }],
+    };
+    const at = sl.after ? out.findIndex((s) => s.id === sl.after) + 1 : 0;
+    if (at > 0) return out.slice(0, at).concat([run], out.slice(at));
+    return sl.first ? [run].concat(out) : out.concat([run]);
   }
   const isGameDay = (date) => dayIdx(date) === 2 && !(((P.DATE_OVERRIDES || {})[date] || {}).noGame);
   const logId = (date, sid) => 'log_' + date + '_' + sid;
@@ -267,6 +302,6 @@ window.Core = (function () {
   }
 
   return { P, S, DAY_NAMES, DAY_LONG, esc, iso, parse, addDays, dayIdx, mondayOf, today, fmtDate, diffDays,
-    profile, weekAbs, weekOf, cycleOf, dateFor, sessionsFor, isGameDay, logId, getLog, setOf, filled, progress,
+    profile, weekAbs, weekOf, cycleOf, dateFor, sessionsFor, runKm, isGameDay, logId, getLog, setOf, filled, progress,
     allLogs, lastFor, bestBefore, restSeconds, topOfRange, e1rm, catalogue, series, lineChart, weekVolumes, volumeChart, sleepEffort, sleepEffortChart, isFlag };
 })();

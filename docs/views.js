@@ -69,7 +69,7 @@ window.Views = (function () {
     const tick = `<button class="tick${cur.done ? ' on' : ''}" data-act="tick" data-ex="${e.id}" data-set="${i}" aria-pressed="${!!cur.done}" aria-label="Set ${i + 1} done">✓</button>`;
     const inp = (f, label, step, val, phv) => `<label class="fld"><input id="i-${e.id}-${i}-${f}" type="number" inputmode="decimal" step="${step}" min="0" data-ex="${e.id}" data-set="${i}" data-f="${f}" value="${esc(val || '')}" placeholder="${phv}"><span>${label}</span></label>`;
     if (e.type === 'w') return `<div class="set">${n}${inp('w', 'lb', '0.5', cur.w, ph('w'))}<span class="x">×</span>${inp('r', /s each|s$/.test(e.target) ? 's' : 'reps', '1', cur.r, ph('r'))}${tick}</div>`;
-    if (e.type === 'r') return `<div class="set">${n}${inp('r', e.unit || 'reps', '1', cur.r, ph('r'))}${tick}</div>`;
+    if (e.type === 'r') return `<div class="set">${n}${inp('r', e.unit || 'reps', e.step || '1', cur.r, ph('r'))}${tick}</div>`;
     if (e.type === 't') return `<div class="set">${n}${inp('t', 'sec', '1', cur.t, ph('t'))}${tick}</div>`;
     if (e.type === 's') return `<div class="set">${n}${inp('time', 'sec', '0.01', cur.time, ph('time'))}${tick}</div>`;
     return '';
