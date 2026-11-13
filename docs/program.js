@@ -170,7 +170,7 @@ window.PROGRAM = (function () {
           { id: 'bbrow', name: 'Pronated barbell row', sets: 3, target: '6–8', type: 'w', rest: '2 min', cue: 'Heavy, RPE 8–9, flat back' },
           { id: 'sarow', name: 'Single-arm DB row', sets: 2, target: '8–10 each', type: 'w', rest: '90 s', cue: 'RPE 8–9' },
           { id: 'sapulldown', name: 'Straight-arm lat pulldown', sets: 2, target: '12–15', type: 'w', rest: '60 s', cue: 'RPE 8–9' },
-          { id: 'reardelt', name: 'Rear delt cable fly', sets: 3, target: '15', type: 'w', rest: '45 s', cue: 'Light, RPE 9' },
+          { id: 'reardelt', name: 'Single-arm rear delt cable fly', sets: 3, target: '15 each', type: 'w', rest: '45 s', cue: 'Light, RPE 9' },
           { id: 'preacher', name: 'EZ bar preacher curl', sets: 3, target: '8–12', type: 'w', rest: '75 s', cue: 'RPE 9, slow lowering' },
         ] },
       ],
