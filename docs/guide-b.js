@@ -44,6 +44,7 @@ Object.assign(window.GUIDE, {
   pallof: ['Stand side-on to a cable at chest height, handle at your chest.', 'Press your arms straight out and hold 2 s without letting the cable twist you.', 'Bring it back in. 10 each side.', 'This trains your trunk to stay stable when you plant and cut.'],
   inclinecurl: ['Lie back on a bench set to about 45°, arms hanging straight down.', 'Curl the dumbbells up without moving your elbows forward.', 'Lower slowly to a full stretch.'],
   preacher: ['Sit at the preacher bench, armpits snug to the top of the pad.', 'Curl the EZ bar up.', 'Lower slowly until your arms are nearly straight.'],
+  revcurl: ['Hold an EZ bar (or straight bar) with an overhand grip, palms facing down, hands shoulder-width.', 'Keep your elbows pinned to your sides and curl the bar up to your shoulders.', 'Lower slowly for about 2 seconds until your arms are straight.', '!Go lighter than a normal curl and don\'t swing: this hits the forearms and brachialis.'],
 
   // Ball work -----------------------------------------------------------------------
   mastery: ['5 minutes on the spot, both feet.', 'Toe taps on top of the ball, sole rolls side to side, inside–outside touches, V-pulls.', 'Stay on the balls of your feet and keep your eyes up when you can.'],

@@ -150,6 +150,7 @@ window.PROGRAM = (function () {
         { id: 'hlfly', name: 'High-to-low cable fly', sets: 2, target: '12–15', type: 'w', rest: '75 s', cue: 'RPE 9' },
         { id: 'cablelat', name: 'Cable lateral raise (single arm)', sets: 3, target: '12–15 each', type: 'w', rest: '45 s', cue: 'Light, RPE 9' },
         { id: 'ohext', name: 'Overhead rope triceps extension', sets: 3, target: '10–12', type: 'w', rest: '75 s', cue: 'RPE 9' },
+        { id: 'revcurl', name: 'Reverse EZ bar curl (overhand grip)', sets: 2, target: '12–15', type: 'w', rest: '60 s', cue: 'RPE 8 (spares your grip for Friday’s pull), elbows pinned, slow lowering' },
         { id: 'tib', name: 'Tibialis raise', sets: 2, target: '20', type: 'r' },
       ] }],
     }],
