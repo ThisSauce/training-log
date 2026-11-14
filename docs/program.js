@@ -9,7 +9,7 @@ window.PROGRAM = (function () {
     3: { name: 'Power', weeks: '9–12' },
   };
   const DELOAD = [4, 8];
-  const TEST_WEEKS = [1, 6, 12];
+  const TEST_WEEKS = [1, 12]; // week 6 (Sat Dec 12) dropped: the first test is now Sat Jan 2, 2027
   // One-off test moves: date the test was due -> where it went, and today's note.
   const TEST_MOVES = {
     '2026-11-07': { to: '2027-01-02', note: 'Rained out: the test battery moved to Sat Jan 2, 2027, so do the normal session today. Rainy-day version: Movati’s turf is only 25 yards (about 23 m), too short for flying sprints, so swap them for light sled sprints; everything else as normal.' },
