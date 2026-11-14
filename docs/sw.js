@@ -1,6 +1,6 @@
 // Offline support: try the network first so updates show up, fall back to the
 // cached copy when there's no signal (e.g. at the field).
-const VERSION = 'v1794630740';
+const VERSION = 'v1794631009';
 const CACHE = 'training-log-' + VERSION;
 const SHELL = ['./', 'index.html', 'program.js', 'guide-a.js', 'guide-b.js', 'store.js', 'core.js', 'views.js', 'app.js',
   'manifest.webmanifest', 'icons/apple-touch-icon.png', 'icons/icon-192.png', 'icons/icon-512.png'];
