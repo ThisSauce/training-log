@@ -12,7 +12,7 @@ window.PROGRAM = (function () {
   const TEST_WEEKS = [1, 6, 12];
   // One-off test moves: date the test was due -> where it went, and today's note.
   const TEST_MOVES = {
-    '2026-11-07': { to: '2026-11-14', note: 'Rained out: the test battery moved to Sat Nov 14, so do the normal session today. Rainy-day version: Movati’s turf is only 25 yards (about 23 m), too short for flying sprints, so swap them for light sled sprints; everything else as normal.' },
+    '2026-11-07': { to: '2027-01-02', note: 'Rained out: the test battery moved to Sat Jan 2, 2027, so do the normal session today. Rainy-day version: Movati’s turf is only 25 yards (about 23 m), too short for flying sprints, so swap them for light sled sprints; everything else as normal.' },
   };
   // Cold-weather season: Movati’s indoor turf is only 25 yards (~23 m), so long sprints get indoor swaps.
   const INDOOR = { from: '2026-11-09', to: '2027-03-31' };
