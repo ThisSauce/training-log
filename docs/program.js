@@ -173,6 +173,7 @@ window.PROGRAM = (function () {
           { id: 'sapulldown', name: 'Straight-arm lat pulldown', sets: 2, target: '12–15', type: 'w', rest: '60 s', cue: 'RPE 8–9' },
           { id: 'reardelt', name: 'Single-arm rear delt cable fly', sets: 3, target: '15 each', type: 'w', rest: '45 s', cue: 'Light, RPE 9' },
           { id: 'preacher', name: 'EZ bar preacher curl', sets: 3, target: '8–12', type: 'w', rest: '75 s', cue: 'RPE 9, slow lowering' },
+          { id: 'trapiso', name: 'Trap bar isometric hold', sets: 3, target: '30 s', type: 'w', rest: '60–90 s', cue: 'Stand tall at lockout; a load you could hold ~40 s. Grip, traps, bracing' },
         ] },
       ],
     }, {
