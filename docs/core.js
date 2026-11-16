@@ -37,6 +37,19 @@ window.Core = (function () {
         const base = P.DAYS[src].find((s) => s.id === u.id);
         const r = P.resolve(base, w, src, date);
         if (u.drop) r.blocks = r.blocks.map((b) => Object.assign({}, b, { ex: b.ex.filter((e) => !u.drop.includes(e.id)) })).filter((b) => b.ex.length || !b.title || b.testLink || b.note);
+        if (u.sets) r.blocks = r.blocks.map((b) => Object.assign({}, b, { ex: b.ex.map((e) => u.sets[e.id] ? Object.assign({}, e, { sets: u.sets[e.id] }) : e) }));
+        // add: borrow exercises from another session, inserted before an exercise or as a new block.
+        for (const a of u.add || []) {
+          const sd = P.DAYS.findIndex((day) => day.some((s) => s.id === a.from));
+          const from = P.resolve(P.DAYS[sd].find((s) => s.id === a.from), w, sd, date);
+          const ex = a.ids.map((id) => { for (const b of from.blocks) { const e = b.ex.find((x) => x.id === id); if (e) return e; } return null; }).filter(Boolean);
+          const bi = a.before ? r.blocks.findIndex((b) => b.ex.some((e) => e.id === a.before)) : -1;
+          if (bi >= 0) {
+            const b = r.blocks[bi], i = b.ex.findIndex((e) => e.id === a.before);
+            r.blocks = r.blocks.slice(); r.blocks[bi] = Object.assign({}, b, { ex: b.ex.slice(0, i).concat(ex, b.ex.slice(i)) });
+          } else r.blocks = r.blocks.concat([{ title: a.title || from.title, ex }]);
+        }
+        if (u.title) r.title = u.title;
         if (u.slot) r.slot = u.slot;
         out.push(r);
       }

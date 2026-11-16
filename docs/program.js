@@ -24,16 +24,22 @@ window.PROGRAM = (function () {
     '2026-11-10': { skip: ['tueam'], note: 'No game this Wednesday, so the game prime is off today. Keep the evening pull session.' },
     '2026-11-11': { noGame: true, use: [{ id: 'mon', slot: 'Morning', drop: ['inclinedb', 'lhfly', 'latraise', 'pushdown'] }], note: 'No game today: this is Monday’s missed session (bounce, turning, lunges, tantrums, calves). The chest and arm finishers are dropped because Thursday is chest day.' },
     '2026-11-12': { skip: ['thuflush'], note: 'No game yesterday, so no recovery flush. Push (chest) as normal.' },
+    '2026-11-16': { skip: ['mon'], note: 'No gym today (midterm week): Monday’s session moves to Tuesday.' },
+    '2026-11-17': { use: [
+      { id: 'mon', slot: 'Morning, 6am', title: 'Monday’s session: bounce, turning + legs', drop: ['inclinedb', 'lhfly', 'latraise', 'pushdown'], sets: { shufstop: 1, jockey: 1, crossover: 1, bpturn: 1, turn505: 1, mirror: 2 }, add: [{ from: 'tueam', ids: ['reactstart', 'shufsprint'], title: 'Prime finish' }] },
+      { id: 'tuepm', slot: 'Evening, 8:30pm', title: 'Chest + pull', drop: ['inclinecurl'], sets: { pushdown: 3 }, add: [{ from: 'mon', ids: ['inclinedb'], before: 'pulldown' }, { from: 'mon', ids: ['latraise'], before: 'pushdown' }] },
+    ], note: 'Monday’s missed session is split today. Morning: bounce (~100 jumps, quick and springy, not max effort), turning drills 1 set each, legs, then the game prime finish. Evening: Monday’s chest added to pull; no fly, incline curl or run. Lateral lunges moderate (RPE 6–7): game tomorrow.' },
   };
   // Frat philanthropy: 100 km of running (Strava-tracked, walking doesn't count) by Nov 30. Easy pace only.
   // plan: date -> km. Slots and placement by weekday (0 = Mon); Thu replaces the flush, Sun replaces the walk/jog.
   const RUN_CHALLENGE = {
     from: '2026-11-11', to: '2026-11-30', goal: 100,
     plan: {
-      '2026-11-12': 6, '2026-11-13': 5, '2026-11-15': 8,
-      '2026-11-16': 7, '2026-11-17': 4, '2026-11-19': 7, '2026-11-20': 6, '2026-11-22': 10,
-      '2026-11-23': 8, '2026-11-24': 5, '2026-11-26': 8, '2026-11-27': 6, '2026-11-29': 12,
-      '2026-11-30': 8,
+      // Nov 15–17 runs dropped (missed / midterm week); their 19 km moved after the tests.
+      '2026-11-12': 6, '2026-11-13': 5,
+      '2026-11-19': 7, '2026-11-20': 9, '2026-11-22': 13,
+      '2026-11-23': 10, '2026-11-24': 8, '2026-11-26': 10, '2026-11-27': 9, '2026-11-29': 14,
+      '2026-11-30': 9,
     },
     slots: {
       0: { slot: 'Early morning', when: '6:45–7:35am, before work', first: true, oneSet: { mon: ['pogo', 'linehop', 'sllathop', 'skater', 'hurdlefwd', 'hurdlelat'] } },

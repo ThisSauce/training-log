@@ -41,6 +41,8 @@ window.Views = (function () {
     let h = weekStrip(date);
     h += `<h2 class="dayhead">${C.DAY_LONG[C.dayIdx(date)]} <span>${esc(C.fmtDate(date, { month: 'long', day: 'numeric' }))}</span></h2>`;
     h += banners(date, ss.find((s) => s.test));
+    const ov = (P.DATE_OVERRIDES || {})[date];
+    if (!ss.length && ov && ov.note) h += `<div class="banner">${esc(ov.note)}</div>`;
     h += '<div class="cards">';
     ss.forEach((s) => {
       const pr = C.progress(s, C.getLog(date, s.id));
