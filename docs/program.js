@@ -34,7 +34,8 @@ window.PROGRAM = (function () {
     '2026-11-25': { noGame: true, use: [{ id: 'fripm', slot: 'Evening, about 8:15pm', title: 'Workout day: dribbling + repeat sprints' }], note: 'No soccer tonight, so it is a workout day: Friday’s dribbling + air-bike sprints move here (Movati about 8:15–8:55pm, after MATH 1090). The 9 km run is at midday.' },
     '2026-11-27': { use: [{ id: 'friam', slot: 'Night, about 9pm after work', title: 'Ankles + pull (after work)' }], note: 'Work 8am–4:15pm plus the 5:45–8:30pm shift. Ankles + pull at Movati about 9–9:50pm; dribbling moved to Wednesday. Bed by 11 (leave 6:45am Saturday).' },
     '2026-11-28': { use: [{ id: 'sat', sets: { nordic: 2 } }], note: 'Nordics cut to 2 sets of 4 so your hamstrings are fresh for the 14 km long run tomorrow. Keep the run at least 6 h away from today’s legs.' },
-    '2026-12-01': { note: 'Research update starts today: heavier calves, Copenhagen reps, reactive balance, hip flexors, carries, shots, Monday max sprints, Sunday intervals instead of long runs. This is week 4, a deload: fewer sets, same intensity.' },
+    '2026-12-01': { note: 'Research update starts today: heavier calves, Copenhagen reps, reactive balance, hip flexors, carries, shots, Monday max sprints, Sunday intervals instead of long runs. This is week 4, a deload: fewer sets, same intensity. Game + EECS final tomorrow: keep the prime short and get to bed early.' },
+    '2026-12-02': { use: [{ id: 'wedam', drop: ['midprime'] }, { id: 'wedpm' }], note: 'EECS 1022 final 1:30–3:20pm, game tonight. Skip the midday primer (it would land right before the exam); the wake-up is optional, easy movement only. Eat a real meal after the exam, then the normal pre-match primer before kick-off.' },
   };
   // Frat philanthropy: 100 km of running (Strava-tracked, walking doesn't count) by Nov 30. Easy pace only.
   // plan: date -> km. Slots and placement by weekday (0 = Mon); Thu replaces the flush, Sun replaces the walk/jog.
