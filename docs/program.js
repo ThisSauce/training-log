@@ -30,23 +30,21 @@ window.PROGRAM = (function () {
       { id: 'tuepm', slot: 'Evening, 8:30pm', title: 'Chest + pull', drop: ['inclinecurl'], sets: { pushdown: 3 }, add: [{ from: 'mon', ids: ['inclinedb'], before: 'pulldown' }, { from: 'mon', ids: ['latraise'], before: 'pushdown' }] },
     ], note: 'Monday’s missed session is split today. Morning: bounce (~100 jumps, quick and springy, not max effort), turning drills 1 set each, legs, then the game prime finish. Evening: Monday’s chest added to pull; no fly, incline curl or run. Lateral lunges moderate (RPE 6–7): game tomorrow.' },
     '2026-11-23': { use: [{ id: 'mon', slot: 'Midday, 1:30pm', title: 'Lateral, turning, bounce + chest (first day back)', drop: ['jumpcheck'], sets: { latlunge: 2, inclinedb: 3, lhfly: 2 } }], note: 'First workout after a week off: jump check skipped, one set fewer on lateral lunges, incline press and fly. Keep it moderate (RPE 6–7). Movati 1–2:20pm straight from work; passport photos after you shower.' },
-    '2026-11-24': { skip: ['tueam'], note: 'No game this Wednesday, so the game prime is off. Pull at Movati about 8:30pm, then the 11 km treadmill run (3 km extra from Monday’s missed run).' },
-    '2026-11-25': { noGame: true, use: [{ id: 'fripm', slot: 'Evening, about 8:15pm', title: 'Workout day: dribbling + repeat sprints' }], note: 'No soccer tonight, so it is a workout day: Friday’s dribbling + air-bike sprints move here (Movati about 8:15–8:55pm, after MATH 1090). The 11 km run is at midday (12–1:10).' },
+    '2026-11-24': { skip: ['tueam'], note: 'No game this Wednesday, so the game prime is off. Pull at Movati about 8:30pm.' },
+    '2026-11-25': { noGame: true, use: [{ id: 'fripm', slot: 'Evening, about 8:15pm', title: 'Workout day: dribbling + repeat sprints' }], note: 'No soccer tonight, so it is a workout day: Friday’s dribbling + air-bike sprints move here (Movati about 8:15–8:55pm, after MATH 1090).' },
     '2026-11-27': { use: [{ id: 'friam', slot: 'Night, about 9pm after work', title: 'Ankles + pull (after work)' }], note: 'Work 8am–4:15pm plus the 5:45–8:30pm shift. Ankles + pull at Movati about 9–9:50pm; dribbling moved to Wednesday. Bed by 11 (leave 6:45am Saturday).' },
-    '2026-11-28': { use: [{ id: 'sat', sets: { nordic: 2 } }], note: 'Nordics cut to 2 sets of 4 so your hamstrings are fresh for the 14 km long run tomorrow. Keep the run at least 6 h away from today’s legs.' },
+    '2026-11-28': { use: [{ id: 'sat', sets: { nordic: 2 } }], note: 'Nordics 2 sets of 4.' },
     '2026-12-01': { note: 'Research update starts today: heavier calves, Copenhagen reps, reactive balance, hip flexors, carries, shots, Monday max sprints, Sunday intervals instead of long runs. This is week 4, a deload: fewer sets, same intensity. Game + EECS final tomorrow: keep the prime short and get to bed early.' },
     '2026-12-02': { use: [{ id: 'wedam', drop: ['midprime'] }, { id: 'wedpm' }], note: 'EECS 1022 final 1:30–3:20pm, game tonight. Skip the midday primer (it would land right before the exam); the wake-up is optional, easy movement only. Eat a real meal after the exam, then the normal pre-match primer before kick-off.' },
   };
   // Frat philanthropy: 100 km of running (Strava-tracked, walking doesn't count) by Nov 30. Easy pace only.
   // plan: date -> km. Slots and placement by weekday (0 = Mon); Thu replaces the flush, Sun replaces the walk/jog.
   const RUN_CHALLENGE = {
-    from: '2026-11-11', to: '2026-11-30', goal: 100,
+    from: '2026-11-11', to: '2026-11-22', goal: 100, // cancelled Nov 23: no runs after Nov 22
     plan: {
       // Nov 23 run missed (Ubered to work): its 10 km spread over Nov 24 (+3), 25 (+2), 26 (+2), 30 (+3); no run over ~14 km (110% rule). Nov 15–17 runs dropped (missed / midterm week); their 19 km moved after the tests. Nov 27 run moved to Wed Nov 25 (work 8am–8:30pm Fri).
       '2026-11-12': 6, '2026-11-13': 5,
       '2026-11-19': 7, '2026-11-20': 9, '2026-11-22': 13,
-      '2026-11-24': 11, '2026-11-25': 11, '2026-11-26': 12, '2026-11-29': 14,
-      '2026-11-30': 12,
     },
     slots: {
       0: { slot: 'Early morning', when: '6:25–7:30am, before the 7:44 bus to work', first: true, oneSet: { mon: ['pogo', 'linehop', 'sllathop', 'skater', 'hurdlefwd', 'hurdlelat'] } },
