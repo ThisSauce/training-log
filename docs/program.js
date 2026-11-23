@@ -35,15 +35,16 @@ window.PROGRAM = (function () {
   const RUN_CHALLENGE = {
     from: '2026-11-11', to: '2026-11-30', goal: 100,
     plan: {
-      // Nov 15–17 runs dropped (missed / midterm week); their 19 km moved after the tests.
+      // Nov 15–17 runs dropped (missed / midterm week); their 19 km moved after the tests. Nov 27 run moved to Wed Nov 25 (work 8am–8:30pm Fri).
       '2026-11-12': 6, '2026-11-13': 5,
       '2026-11-19': 7, '2026-11-20': 9, '2026-11-22': 13,
-      '2026-11-23': 10, '2026-11-24': 8, '2026-11-26': 10, '2026-11-27': 9, '2026-11-29': 14,
+      '2026-11-23': 10, '2026-11-24': 8, '2026-11-25': 9, '2026-11-26': 10, '2026-11-29': 14,
       '2026-11-30': 9,
     },
     slots: {
       0: { slot: 'Early morning', when: '6:45–7:35am, before work', first: true, oneSet: { mon: ['pogo', 'linehop', 'sllathop', 'skater', 'hurdlefwd', 'hurdlelat'] } },
       1: { slot: 'Late evening', when: 'Movati treadmill right after pull, about 9–9:25pm', first: false },
+      2: { slot: 'Midday', when: '12–1pm, between the MATH 1019 summary and EECS (moved from Fri: work all day)', first: true },
       3: { slot: 'Afternoon', when: 'about 2:30pm at York (after your last test on Nov 19), before push', first: true, skip: ['thuflush'] },
       4: { slot: 'Late morning', when: 'Movati treadmill right after ankles + pull, about 9:50–10:25am', after: 'friam', drop: { fripm: ['rsa', 'bikesprint'] } },
       6: { slot: 'Early morning', when: '6:30–7:45am, before study', first: true, drop: { sun: ['easycardio'] } },
