@@ -33,7 +33,8 @@ window.PROGRAM = (function () {
     '2026-11-24': { skip: ['tueam'], note: 'No game this Wednesday, so the game prime is off. Pull at Movati about 8:30pm, then the 8 km treadmill run.' },
     '2026-11-25': { noGame: true, use: [{ id: 'fripm', slot: 'Evening, about 8:15pm', title: 'Workout day: dribbling + repeat sprints' }], note: 'No soccer tonight, so it is a workout day: Friday’s dribbling + air-bike sprints move here (Movati about 8:15–8:55pm, after MATH 1090). The 9 km run is at midday.' },
     '2026-11-27': { use: [{ id: 'friam', slot: 'Night, about 9pm after work', title: 'Ankles + pull (after work)' }], note: 'Work 8am–4:15pm plus the 5:45–8:30pm shift. Ankles + pull at Movati about 9–9:50pm; dribbling moved to Wednesday. Bed by 11 (leave 6:45am Saturday).' },
-    '2026-11-28': { use: [{ id: 'sat', sets: { nordic: 2 } }], note: 'Nordics cut to 2 sets of 4 so your hamstrings are fresh for the 14 km long run tomorrow.' },
+    '2026-11-28': { use: [{ id: 'sat', sets: { nordic: 2 } }], note: 'Nordics cut to 2 sets of 4 so your hamstrings are fresh for the 14 km long run tomorrow. Keep the run at least 6 h away from today’s legs.' },
+    '2026-12-01': { note: 'Research update starts today: heavier calves, Copenhagen reps, reactive balance, hip flexors, carries, shots, Monday max sprints, Sunday intervals instead of long runs. This is week 4, a deload: fewer sets, same intensity.' },
   };
   // Frat philanthropy: 100 km of running (Strava-tracked, walking doesn't count) by Nov 30. Easy pace only.
   // plan: date -> km. Slots and placement by weekday (0 = Mon); Thu replaces the flush, Sun replaces the walk/jog.
@@ -55,6 +56,9 @@ window.PROGRAM = (function () {
       6: { slot: 'Early morning', when: '6:30–7:45am, before study', first: true, drop: { sun: ['easycardio'] } },
     },
   };
+  // Research update (Nov 23 report): new exercises carry from/to dates; sessions can take a new title/intro via `after`.
+  const NEW = '2026-12-01';
+  const OLD = '2026-11-30';
   const RAMP = { id: 'ramp', name: 'RAMP warm-up', sets: 1, target: '15 min', type: 'x', cue: 'Raise · Activate · Mobilise · Potentiate. End ready to go full speed.' };
 
   const DAYS = [
@@ -64,22 +68,25 @@ window.PROGRAM = (function () {
       intro: 'Two days before the game: fast and sharp, low soreness. Movement work before any lifting.',
       blocks: [
         { title: 'Warm-up', ex: [RAMP,
-          { id: 'jumpcheck', name: 'Jump check: 3 max vertical jumps', sets: 1, target: 'best height', type: 'r', unit: 'cm', cue: 'Clearly lower than usual or heavy legs? Only 1 set of each Bounce drill today.' }] },
-        { title: 'Bounce', note: (w) => w >= 9 ? 'About 100 foot contacts. Weeks 9–12: lateral hurdle hops replace forward ones.' : w >= 5 ? 'About 100 foot contacts. Weeks 5–8: skater bounds are continuous (no stick).' : 'About 100 foot contacts. Quiet landings, knees track straight.', ex: [
+          { id: 'jumpcheck', name: 'Jump check: 3 max vertical jumps', sets: 1, target: 'average height', type: 'r', unit: 'cm', cue: 'Log the AVERAGE of the 3, not the best. Down more than 5–10% from your usual, or heavy legs? Only 1 set of each Bounce drill and skip the max sprints today.' }] },
+        { title: 'Max speed', note: 'Two days before the game is the best day for near-top-speed running (linked to far fewer hamstring injuries). Full rest, stop if you slow down.', ex: [
+          { id: 'maxsprint', name: 'Max sprints, rolling start', sets: 3, target: '20–25 yd', type: 's', rest: '3 min', from: NEW, cue: 'Jog-in 5 yd, then all-out to the end of the turf. Tall, relaxed, hit down under your hips.' },
+        ] },
+        { title: 'Bounce', note: (w) => w >= 9 ? 'About 70 foot contacts. Weeks 9–12: lateral hurdle hops replace forward ones.' : w >= 5 ? 'About 70 foot contacts. Weeks 5–8: skater bounds are continuous (no stick).' : 'About 70 foot contacts. Quiet landings, knees track straight.', ex: [
           { id: 'pogo', name: 'Double-leg pogos', sets: 2, target: '15', type: 'x', cue: 'Stiff ankles, "hot ground"' },
           { id: 'linehop', name: 'Lateral line hops (two feet)', sets: 2, target: '10', type: 'x', cue: 'Tiny, fast, stay over the line' },
           { id: 'sllathop', name: 'Single-leg lateral hops', sets: 2, target: '6 each leg', type: 'x', cue: 'Land and rebound instantly' },
-          { id: 'skater', name: 'Skater bound and stick', sets: 3, target: '4 each side', type: 'x', cue: 'Push sideways, freeze 2 s on landing', vary: (w) => w >= 5 ? { name: 'Skater bounds (continuous)', cue: 'Continuous, no stick' } : null },
+          { id: 'skater', name: 'Skater bound and stick', sets: 2, target: '4 each side', type: 'x', cue: 'Push sideways, freeze 2 s on landing', vary: (w) => w >= 5 ? { name: 'Skater bounds (continuous)', cue: 'Continuous, no stick' } : null },
           { id: 'hurdlefwd', name: 'Forward hurdle hops (two feet)', sets: 2, target: '5', type: 'x', weeks: [5, 8] },
           { id: 'hurdlelat', name: 'Lateral hurdle hops', sets: 2, target: '5', type: 'x', weeks: [9, 12] },
         ] },
-        { title: 'Side-to-side and turning', note: 'Rest 45–60 s between reps.', ex: [
-          { id: 'shufstop', name: 'Shuffle-to-stop', sets: 2, target: 'each way', type: 'x', cue: 'Shuffle 3 m fast, plant outside foot wide, stop dead, push back' },
-          { id: 'jockey', name: 'Jockey + hip turn and run', sets: 2, target: 'each side', type: 'x', cue: 'Backpedal 3 m, drop step, sprint 10 m' },
-          { id: 'crossover', name: 'Crossover run', sets: 2, target: 'each side', type: 'x', cue: 'From side-on, cross the trail leg over, sprint 10 m' },
-          { id: 'bpturn', name: 'Backpedal → turn → chase', sets: 2, target: 'each side', type: 'x', cue: 'Backpedal 5 m, turn 180°, sprint 10 m' },
-          { id: 'turn505', name: '5-0-5 turn', sets: 2, target: 'each side', type: 'x', cue: 'Sprint 10 m, plant, 180° turn, sprint 5 m back' },
-          { id: 'mirror', name: 'Reactive mirror or app', sets: 4, target: '6 s', type: 'x', cue: 'React and go' },
+        { title: 'Side-to-side and turning', note: (w, d) => d >= NEW ? 'Quality over volume: 1 sharp set of each, full effort, rest 45–60 s between reps.' : 'Rest 45–60 s between reps.', ex: [
+          { id: 'shufstop', name: 'Shuffle-to-stop', sets: 2, target: 'each way', type: 'x', cue: 'Shuffle 3 m fast, plant outside foot wide, stop dead, push back', vary: (w, d) => d >= NEW ? { sets: 1 } : null },
+          { id: 'jockey', name: 'Jockey + hip turn and run', sets: 2, target: 'each side', type: 'x', cue: 'Backpedal 3 m, drop step, sprint 10 m', vary: (w, d) => d >= NEW ? { sets: 1 } : null },
+          { id: 'crossover', name: 'Crossover run', sets: 2, target: 'each side', type: 'x', cue: 'From side-on, cross the trail leg over, sprint 10 m', vary: (w, d) => d >= NEW ? { sets: 1 } : null },
+          { id: 'bpturn', name: 'Backpedal → turn → chase', sets: 2, target: 'each side', type: 'x', cue: 'Backpedal 5 m, turn 180°, sprint 10 m', vary: (w, d) => d >= NEW ? { sets: 1 } : null },
+          { id: 'turn505', name: '5-0-5 turn', sets: 2, target: 'each side', type: 'x', cue: 'Sprint 10 m, plant, 180° turn, sprint 5 m back', vary: (w, d) => d >= NEW ? { sets: 1 } : null },
+          { id: 'mirror', name: 'Reactive mirror or app', sets: 4, target: '6 s', type: 'x', cue: 'React and go', vary: (w, d) => d >= NEW ? { sets: 2 } : null },
         ] },
         { title: 'Strength and chest', ex: [
           { id: 'latlunge', name: 'Lateral lunge (or Cossack squat)', sets: 3, target: '6 each', type: 'w', rest: '90 s', cue: 'Moderate, control the drop' },
@@ -88,7 +95,7 @@ window.PROGRAM = (function () {
           { id: 'lhfly', name: 'Low-to-high cable fly', sets: 3, target: '12–15', type: 'w', rest: '75 s', cue: 'RPE 8–9' },
           { id: 'latraise', name: 'DB lateral raise', sets: 3, target: '12–15', type: 'w', rest: '60 s', cue: 'RPE 9' },
           { id: 'pushdown', name: 'Triceps rope pushdown', sets: 3, target: '12–15', type: 'w', rest: '60 s', cue: 'RPE 9' },
-          { id: 'slcalf', name: 'Single-leg calf raise off a step', sets: 2, target: '12–15 each', type: 'r', cue: '3 s down' },
+          { id: 'slcalf', name: 'Single-leg calf raise off a step', sets: 2, target: '12–15 each', type: 'r', cue: '3 s down. Hold a dumbbell once 15 is easy.' },
           { id: 'tib', name: 'Tibialis raise', sets: 2, target: '20', type: 'r', cue: 'Back to wall, toes up high' },
         ] },
       ],
@@ -114,7 +121,7 @@ window.PROGRAM = (function () {
         { id: 'inclinecurl', name: 'Incline DB biceps curl', sets: 3, target: '10–12', type: 'w', rest: '60 s', cue: 'RPE 9' },
         { id: 'pushdown', name: 'Triceps rope pushdown', sets: 2, target: '12–15', type: 'w', rest: '60 s', cue: 'RPE 9' },
         { id: 'facepull', name: 'Face pull', sets: 2, target: '15', type: 'w', rest: '45 s', cue: 'Light' },
-        { id: 'pallof', name: 'Pallof press', sets: 2, target: '10 each side', type: 'w', rest: '45 s', cue: 'Moderate, 2-s hold arms out' },
+        { id: 'pallof', name: 'Pallof press', sets: 3, target: '8 each side', type: 'w', rest: '45 s', cue: 'Heavier, 3-s hold arms out. Stay square: this is what keeps you strong when you get bumped.' },
       ] }],
     }],
     // Wednesday
@@ -127,6 +134,7 @@ window.PROGRAM = (function () {
         { id: 'bridge', name: 'Glute bridge', sets: 2, target: '10', type: 'x' },
         { id: 'copshort', name: 'Copenhagen plank, short lever', sets: 1, target: '10 s each side', type: 'x' },
         { id: 'strides', name: 'Pogos ×10, then relaxed strides at 70%', sets: 2, target: '20 m', type: 'x' },
+        { id: 'midprime', name: 'Optional midday primer (5–6 h before kick-off)', sets: 1, target: '3 × 3', type: 'x', from: NEW, cue: 'Light trap-bar jumps, or 3 × 10 m sprints. Fast and few: it should wake you up, not tire you.' },
       ] }],
     }, {
       id: 'wedpm', slot: 'Evening', title: 'Pre-match primer + match', mins: null,
@@ -140,7 +148,7 @@ window.PROGRAM = (function () {
         ] },
         { title: 'Match', ex: [
           { id: 'match', name: 'Match played', sets: 1, target: 'minutes', type: 'r', unit: 'min', cue: 'Stay low on the balls of your feet when defending' },
-          { id: 'postgame', name: 'After the game: walk, stretch, real meal', sets: 1, target: '10 min', type: 'x' },
+          { id: 'postgame', name: 'After the game: walk, stretch, real meal', sets: 1, target: '10 min', type: 'x', cue: 'A cold shower or ice bath is fine after games (never right after lifting: it blunts strength gains).' },
         ] },
       ],
     }],
@@ -173,11 +181,15 @@ window.PROGRAM = (function () {
       intro: 'This is where "bouncy" gets built. Go light on the barbell row the first two weeks.',
       blocks: [
         { title: 'Ankles and groin (do these first)', ex: [
-          { id: 'isocalf', name: 'Single-leg isometric calf hold', sets: 4, target: '30 s each leg', type: 'w', rest: '60 s', cue: 'Straight knee, heels slightly raised, hard effort, no pain' },
-          { id: 'seatcalf', name: 'Seated calf raise (soleus)', sets: 3, target: '10–12', type: 'w', rest: '60 s', cue: 'Heavy, 2-s top hold' },
+          { id: 'isocalf', name: 'Single-leg isometric calf hold', sets: 4, target: '20–30 s each leg', type: 'w', rest: '60 s', cue: 'HEAVY: push up into a fixed Smith bar or hold a heavy dumbbell, near-max effort. Straight knee, no pain. Bodyweight is too light to stiffen the tendon.' },
+          { id: 'seatcalf', name: 'Seated calf raise (soleus)', sets: 3, target: '8', type: 'w', rest: '60 s', cue: 'Heavy, 2-s top hold' },
           { id: 'tib', name: 'Tibialis raise', sets: 2, target: '20', type: 'r' },
-          { id: 'copen', name: 'Copenhagen plank', sets: 3, target: '20–30 s each side', type: 't', cue: 'Progress from knee to foot support' },
-          { id: 'balance', name: 'Single-leg balance, eyes closed', sets: 2, target: '30 s each', type: 'x', cue: 'Barefoot if you can' },
+          { id: 'copen', name: 'Copenhagen plank', sets: 3, target: '20–30 s each side', type: 't', to: OLD, cue: 'Progress from knee to foot support' },
+          { id: 'copenrep', name: 'Copenhagen adduction (reps)', sets: 3, target: '5 each side', type: 'r', from: NEW, cue: 'Top leg on the bench, lower your body to the floor and lift back up. Knee support until the reps feel solid.', vary: (w) => w >= 9 ? { sets: 2, target: '12–15 each side' } : w >= 7 ? { target: '10–12 each side' } : w >= 5 ? { target: '8 each side' } : null },
+          { id: 'balance', name: 'Single-leg balance, eyes closed', sets: 2, target: '30 s each', type: 'x', to: OLD, cue: 'Barefoot if you can' },
+          { id: 'hopstick', name: 'Single-leg hop and stick', sets: 3, target: '5 each leg', type: 'x', from: NEW, cue: 'Hop forward, sideways or diagonally, land quiet and freeze 2 s. Knee over toes.' },
+          { id: 'slcatch', name: 'Single-leg balance + ball catches', sets: 2, target: '30 s each leg', type: 'x', from: NEW, cue: 'Throw a ball at a wall (or partner) and catch while on one leg. Partner bumps if you have one.' },
+          { id: 'hipflex', name: 'Cable or band knee drive (hip flexors)', sets: 3, target: '12 each leg', type: 'w', rest: '45 s', from: NEW, cue: 'Strap on the ankle, drive the knee up fast to hip height, lower slowly.' },
         ] },
         { title: 'Pull', ex: [
           { id: 'bbrow', name: 'Pronated barbell row', sets: 3, target: '6–8', type: 'w', rest: '2 min', cue: 'Heavy, RPE 8–9, flat back' },
@@ -186,13 +198,16 @@ window.PROGRAM = (function () {
           { id: 'reardelt', name: 'Single-arm rear delt cable fly', sets: 3, target: '15 each', type: 'w', rest: '45 s', cue: 'Light, RPE 9' },
           { id: 'preacher', name: 'EZ bar preacher curl', sets: 3, target: '8–12', type: 'w', rest: '75 s', cue: 'RPE 9, slow lowering' },
           { id: 'trapiso', name: 'Trap bar isometric hold', sets: 3, target: '30 s', type: 'w', rest: '60–90 s', cue: 'Stand tall at lockout; a load you could hold ~40 s. Grip, traps, bracing' },
+          { id: 'suitcase', name: 'Suitcase carry', sets: 3, target: '25 m each side', type: 'w', rest: '60 s', from: NEW, cue: 'Heavy dumbbell in one hand, walk tall, don’t lean toward it. Builds the trunk that keeps you up in duels.' },
         ] },
       ],
     }, {
       id: 'fripm', slot: 'Afternoon', title: 'Dribbling + repeat sprints', mins: 40,
       intro: 'Every move with both feet. Play the bursts at full speed. After a late Thursday event, keep it easy: skip the speed dribbles, 1v1s and repeat sprints.',
+      after: { from: NEW, title: 'Dribbling + shooting', intro: 'Every move with both feet. Shots first while you are fresh, then play the bursts at full speed. Repeat sprints moved to Sunday’s intervals.' },
       blocks: [
         { title: 'Dribbling', ex: [
+          { id: 'kick', name: 'Max-power shots', sets: 1, target: '10–15 shots', type: 'x', from: NEW, cue: 'Full power at a wall or net, both feet, rest between shots. Gym strength only turns into ball speed if you practise kicking at max effort while fresh.' },
           { id: 'mastery', name: 'Ball mastery', sets: 1, target: '5 min', type: 'x', cue: 'Toe taps, sole rolls, inside–outside, V-pulls' },
           { id: 'slalom', name: 'Cone slalom', sets: 4, target: 'runs', type: 'x', cue: '6 cones 1 m apart: inside, outside, both' },
           { id: 'moveexplode', name: 'Move and explode', sets: 3, target: 'per move, each side', type: 'x', cue: 'Dribble 10 m at 70%, move, burst 5 m' },
@@ -201,7 +216,7 @@ window.PROGRAM = (function () {
           { id: 'onevone', name: '1v1 to a line', sets: 6, target: 'reps', type: 'x' },
         ] },
         { title: 'Repeat sprints (end of session, 5 min)', note: 'One set only: Saturday’s speed session is the next day. If your Saturday sprint times start dropping, move this block to the end of Monday.', ex: [
-          { id: 'rsa', name: 'Repeat sprints, 30 m all-out', sets: 6, target: '30 m', type: 's', rest: '20 s', cue: 'Walk back slowly; 20 s between sprints', indoor: { id: 'bikesprint', name: 'Air bike sprints (indoor swap for repeat sprints)', target: '8 s', type: 'x', rest: '20 s', cue: 'All-out 8 s, easy pedalling for 20 s, 6 rounds' } },
+          { id: 'rsa', name: 'Repeat sprints, 30 m all-out', sets: 6, target: '30 m', type: 's', rest: '20 s', to: OLD, cue: 'Walk back slowly; 20 s between sprints', indoor: { id: 'bikesprint', name: 'Air bike sprints (indoor swap for repeat sprints)', target: '8 s', type: 'x', rest: '20 s', cue: 'All-out 8 s, easy pedalling for 20 s, 6 rounds' } },
         ] },
       ],
     }],
@@ -213,7 +228,7 @@ window.PROGRAM = (function () {
         { title: 'Warm-up', ex: [RAMP] },
         { title: 'Speed', note: 'Rest fully. Stop the set if you slow down. Times are optional.', testSkip: true, ex: [
           { id: 'accel', name: 'Accelerations, mixed starts', sets: 6, target: '15 m', type: 's', rest: '2 min', cue: '2-point, falling, side-on, defensive turn-and-go', indoor: { target: '10 m', cue: 'Indoor turf: sprint 10 m, slow down over the rest of the turf. 2-point, falling, side-on, defensive turn-and-go' }, vary: (w) => w >= 5 && w <= 8 ? { sets: 3, cue: 'Weeks 5–8: the other 3 are sled or hill sprints below' } : null },
-          { id: 'sled', name: 'Sled or hill sprints', sets: 3, target: '15–20 m', type: 's', weeks: [5, 8], rest: '2–3 min', cue: 'Load slows your 20 m by about 10–20%' },
+          { id: 'sled', name: 'Sled or hill sprints', sets: 4, target: '15 m', type: 's', weeks: [5, 8], rest: '3 min', cue: 'Heavy: a load that slows you 40–60% vs unloaded. Film an unloaded 15 yd and 2–3 loads at 240 fps once to find it; % of bodyweight doesn’t work.' },
           { id: 'flying', name: 'Flying sprints (25 m build-up)', sets: 4, target: '15 m', type: 's', rest: '3–4 min', vary: (w) => w >= 9 ? { target: '20 m' } : null, indoor: (w) => ({ id: 'sledspeed', name: 'Light sled sprints (indoor swap for flying sprints)', target: w >= 9 ? '20 m' : '15 m', rest: '3 min', cue: 'Light: no more than about 10% slower than unloaded. Tall, fast, powerful push-off' }) },
         ] },
         { title: 'Instant stop', note: 'Drop hips early, short choppy steps, outside foot wide, knee over toes, freeze 2 s.', testSkip: true, ex: [
@@ -223,16 +238,16 @@ window.PROGRAM = (function () {
           { id: 'depthdrop', name: 'Depth drop and stick (30–45 cm)', sets: 3, target: '3', type: 'x', weeks: [5, 8] },
           { id: 'stop2', name: 'Sprint 15 m, stop in 2 steps', sets: 4, target: 'reps', type: 'x', weeks: [5, 8] },
           { id: 'cut90', name: '90° cut off a 10 m sprint', sets: 2, target: 'each side', type: 'x', weeks: [5, 8] },
-          { id: 'depthjump', name: 'Depth jump', sets: 3, target: '3', type: 'x', weeks: [9, 12] },
+          { id: 'depthjump', name: 'Depth jump', sets: 3, target: '4', type: 'x', weeks: [5, 12], cue: 'From a 30 cm box: step off, touch, jump up as high and as fast as you can. End the set if contacts get slow.' },
           { id: 'stopback', name: 'Sprint 20 m, 2-step stop, backpedal 3 m', sets: 4, target: 'reps', type: 'x', weeks: [9, 12] },
           { id: 'reactcut', name: 'Reactive 90° cut on a call', sets: 3, target: 'each side', type: 'x', weeks: [9, 12] },
         ] },
         { title: 'Heavy legs', ex: [
-          { id: 'squat', name: 'Back squat', sets: 3, target: '8–10', type: 'w', rest: '2.5–3 min', cue: 'RPE 8', vary: (w) => w >= 9 ? { sets: 3, target: '2–4', cue: 'RPE 8, move the bar fast' } : w >= 5 ? { sets: 4, target: '4–6' } : null },
-          { id: 'boxjump', name: 'Box jump (paired with squats)', sets: 3, target: '3', type: 'r', weeks: [9, 12], cue: '~4 min after each squat set, max height, step down' },
+          { id: 'squat', name: 'Back squat', sets: 3, target: '8–10', type: 'w', rest: '2.5–3 min', cue: 'RPE 8', vary: (w) => w >= 9 ? { sets: 3, target: '2–4', cue: 'RPE 8, move the bar fast' } : w >= 5 ? { sets: 4, target: '4', cue: 'About 85% of your max, RPE 8. Every rep as fast as you can move it.' } : null },
+          { id: 'boxjump', name: 'Box jump (paired with squats)', sets: 3, target: '3', type: 'r', weeks: [5, 12], vary: (w) => w <= 8 ? { sets: 4 } : null, cue: '~4 min after each squat set, max height, step down' },
           { id: 'rfess', name: 'Rear-foot-elevated split squat', sets: 3, target: '6 each', type: 'w', rest: '90 s', cue: 'Heavy DBs, RPE 8' },
           { id: 'rdl', name: 'Romanian deadlift', sets: 3, target: '6–8', type: 'w', rest: '2 min', cue: 'RPE 8. Drop it if you were on your feet all day.' },
-          { id: 'nordic', name: 'Nordic hamstring fall', sets: 3, target: '4–6', type: 'r', rest: '90 s', cue: 'Slow lowering', vary: (w) => w <= 2 ? { sets: 2, target: '3', cue: 'Weeks 1–2: 2 × 3 to limit soreness' } : null },
+          { id: 'nordic', name: 'Nordic hamstring fall', sets: 2, target: '4–6', type: 'r', rest: '90 s', cue: 'Slow lowering', vary: (w) => w <= 2 ? { sets: 2, target: '3', cue: 'Weeks 1–2: 2 × 3 to limit soreness' } : null },
           { id: 'standcalf', name: 'Standing calf raise, straight knee', sets: 4, target: '8', type: 'w', rest: '75 s', cue: 'Heavy, 3-s lowering, 1-s top hold' },
           { id: 'sleddrag', name: 'Backward sled drag', sets: 2, target: '20 m', type: 'w', rest: '60 s', cue: 'Moderate, if time' },
         ] },
@@ -242,8 +257,11 @@ window.PROGRAM = (function () {
     [{
       id: 'sun', slot: 'Morning', title: 'Active recovery', mins: 30,
       intro: 'Easy movement, a little ankle and hip focus. Never repeat Saturday’s legs.',
+      after: { from: NEW, title: 'Conditioning + recovery', intro: 'Your one hard conditioning session of the week (replaces the long easy runs). Then mobility and balance. Never repeat Saturday’s legs.' },
       blocks: [{ title: 'Recovery', ex: [
-        { id: 'easycardio', name: 'Walk or light jog', sets: 1, target: '10 min', type: 'x', cue: 'Conversational pace' },
+        { id: 'easycardio', name: 'Walk or light jog', sets: 1, target: '10 min', type: 'x', to: OLD, cue: 'Conversational pace' },
+        { id: 'intervals', name: 'Intervals: 4 × 4 min hard', sets: 4, target: '4 min', type: 'x', rest: '3 min easy', from: NEW, cue: 'Air bike or turf shuttles at 90–95% max heart rate (hard, can’t talk). Or instead: 2 sets of 6 × 20 yd sprints, 30 s rest, 3 min between sets.' },
+        { id: 'sunbal', name: 'Single-leg balance work', sets: 1, target: '10 min', type: 'x', from: NEW, cue: 'Hop and stick, single-leg reaches, ball catches on one leg.' },
         { id: 'sunmob', name: 'Mobility', sets: 1, target: '10 min', type: 'x', cue: '90/90, ankle wall, cat-camels, couch stretch, Cossack rock-backs' },
         { id: 'feet', name: 'Feet and ankles', sets: 1, target: '5 min', type: 'x', cue: 'Toe walks, heel walks, balance, towel scrunches' },
         { id: 'sunroll', name: 'Foam roll', sets: 1, target: '5 min', type: 'x' },
@@ -289,13 +307,16 @@ window.PROGRAM = (function () {
     const movedIn = !!date && Object.values(TEST_MOVES).some((m) => m.to === date);
     const test = (TEST_WEEKS.includes(week) && dayIdx === 5 && !moved) || movedIn;
     const deload = DELOAD.includes(week);
+    const d = date || new Date().toISOString().slice(0, 10);
     const blocks = [];
     for (const b of session.blocks) {
       if (test && b.testSkip) continue;
       const ex = [];
       for (const e0 of b.ex) {
         if (e0.weeks && (week < e0.weeks[0] || week > e0.weeks[1])) continue;
-        const e = Object.assign({}, e0, e0.vary ? e0.vary(week) || {} : {});
+        if ((e0.from && d < e0.from) || (e0.to && d > e0.to)) continue;
+        const e = Object.assign({}, e0, e0.vary ? e0.vary(week, d) || {} : {});
+        delete e.from; delete e.to;
         if (e0.indoor && indoorOn(date)) Object.assign(e, typeof e0.indoor === 'function' ? e0.indoor(week) : e0.indoor);
         delete e.indoor;
         if (deload && e.sets >= 3 && e.type !== 'x') e.sets = Math.max(2, Math.round(e.sets * 2 / 3));
@@ -303,11 +324,13 @@ window.PROGRAM = (function () {
         if (test && e.type === 'w' && e.id !== 'squat') e.cue = 'Test week: lighter effort, RPE 7';
         if (e.sets > 0) ex.push(e);
       }
-      blocks.push({ title: b.title, note: typeof b.note === 'function' ? b.note(week) : b.note, ex });
+      if (b.ex.length && !ex.length) continue; // every exercise is out of its date range
+      blocks.push({ title: b.title, note: typeof b.note === 'function' ? b.note(week, d) : b.note, ex });
     }
     if (moved) blocks.unshift({ title: 'Test moved', note: moved.note, ex: [] });
     if (test) blocks.splice(1, 0, { title: 'Test battery', note: 'Test week: run the full test battery in the Tests tab, in the order listed, before lifting. Same surface, same shoes, same warm-up every test; take the best of 2–3 tries.', ex: [], testLink: true });
-    return Object.assign({}, session, { blocks, test, deload });
+    const later = session.after && d >= session.after.from ? { title: session.after.title, intro: session.after.intro } : {};
+    return Object.assign({}, session, later, { blocks, test, deload });
   }
 
   return { DAYS, TESTS, HABITS, PHASES, DELOAD, TEST_WEEKS, TEST_MOVES, DATE_OVERRIDES, INDOOR, RUN_CHALLENGE, indoorOn, phaseOf, resolve };
