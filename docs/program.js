@@ -29,7 +29,7 @@ window.PROGRAM = (function () {
       { id: 'mon', slot: 'Morning, 6am', title: 'Monday’s session: bounce, turning + legs', drop: ['inclinedb', 'lhfly', 'latraise', 'pushdown'], sets: { shufstop: 1, jockey: 1, crossover: 1, bpturn: 1, turn505: 1, mirror: 2 }, add: [{ from: 'tueam', ids: ['reactstart', 'shufsprint'], title: 'Prime finish' }] },
       { id: 'tuepm', slot: 'Evening, 8:30pm', title: 'Chest + pull', drop: ['inclinecurl'], sets: { pushdown: 3 }, add: [{ from: 'mon', ids: ['inclinedb'], before: 'pulldown' }, { from: 'mon', ids: ['latraise'], before: 'pushdown' }] },
     ], note: 'Monday’s missed session is split today. Morning: bounce (~100 jumps, quick and springy, not max effort), turning drills 1 set each, legs, then the game prime finish. Evening: Monday’s chest added to pull; no fly, incline curl or run. Lateral lunges moderate (RPE 6–7): game tomorrow.' },
-    '2026-11-23': { use: [{ id: 'mon', slot: 'Midday, 1:30pm', title: 'Lateral, turning, bounce + chest (first day back)', drop: ['jumpcheck'], sets: { latlunge: 2, inclinedb: 3, lhfly: 2 } }], note: 'First workout after a week off: jump check skipped, one set fewer on lateral lunges, incline press and fly. Keep it moderate (RPE 6–7). Movati 1:30–2:50pm, after the passport.' },
+    '2026-11-23': { use: [{ id: 'mon', slot: 'Midday, 1:30pm', title: 'Lateral, turning, bounce + chest (first day back)', drop: ['jumpcheck'], sets: { latlunge: 2, inclinedb: 3, lhfly: 2 } }], note: 'First workout after a week off: jump check skipped, one set fewer on lateral lunges, incline press and fly. Keep it moderate (RPE 6–7). Movati 1:45–3:05pm, after the Walmart passport photos.' },
     '2026-11-24': { skip: ['tueam'], note: 'No game this Wednesday, so the game prime is off. Pull at Movati about 8:30pm, then the 8 km treadmill run.' },
     '2026-11-25': { noGame: true, use: [{ id: 'fripm', slot: 'Evening, about 8:15pm', title: 'Workout day: dribbling + repeat sprints' }], note: 'No soccer tonight, so it is a workout day: Friday’s dribbling + air-bike sprints move here (Movati about 8:15–8:55pm, after MATH 1090). The 9 km run is at midday.' },
     '2026-11-27': { use: [{ id: 'friam', slot: 'Night, about 9pm after work', title: 'Ankles + pull (after work)' }], note: 'Work 8am–4:15pm plus the 5:45–8:30pm shift. Ankles + pull at Movati about 9–9:50pm; dribbling moved to Wednesday. Bed by 11 (leave 6:45am Saturday).' },
@@ -49,7 +49,7 @@ window.PROGRAM = (function () {
       '2026-11-30': 9,
     },
     slots: {
-      0: { slot: 'Early morning', when: '6:45–7:35am, before work', first: true, oneSet: { mon: ['pogo', 'linehop', 'sllathop', 'skater', 'hurdlefwd', 'hurdlelat'] } },
+      0: { slot: 'Early morning', when: '6:25–7:30am, before the 7:44 bus to work', first: true, oneSet: { mon: ['pogo', 'linehop', 'sllathop', 'skater', 'hurdlefwd', 'hurdlelat'] } },
       1: { slot: 'Late evening', when: 'Movati treadmill right after pull, about 9–9:25pm', first: false },
       2: { slot: 'Midday', when: '12–1pm, between the MATH 1019 summary and EECS (moved from Fri: work all day)', first: true },
       3: { slot: 'Afternoon', when: 'about 2:30pm at York (after your last test on Nov 19), before push', first: true, skip: ['thuflush'] },
